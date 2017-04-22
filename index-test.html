@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+     <link href="http://vjs.zencdn.net/5.19.2/video-js.css" rel="stylesheet">
+  <!-- If you'd like to support IE8 -->
+  <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+  <style>  
+        html,body{
+            width:100%;
+            height:100%;
+        } 
+        #box {
+            width:20%;
+            height:100%;
+            position:absolute;
+            background-color: red;
+            right:-20%;
+            top:0;
+            z-index:2147483647;
+            transition:right .3s ease-in-out;
+        }
+        #box.fullScreen{
+            right:0%;
+        }
+        #box .tag {
+            position:absolute;
+            top:100px;
+            left:-30px;
+            width:30px;
+            height:80px;
+            background-color: yellow
+        }
+        .video-js{
+            transition:margin-left .3s ease-in-out;
+        }
+        .video-js.vjs-fullscreen.fullScreen {
+            width: 80% !important;
+            height: 100% !important;
+            padding-top: 0 !important;
+            margin-left:-20%;
+        }
+        #my-video:-webkit-full-screen {
+              width: 100%;
+              height: 100%;
+              z-index:20!important;
+        }
+        .my-video-dimensions {
+            width:100%;
+            height:100%;
+        }
+  </style>
+</head>
+<body>
+    
+        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+        poster="../images/1.jpg" data-setup="{}">
+          <source src="../images/Honor.mp4" type='video/mp4'>
+         <!--  <source src="MY_VIDEO.webm" type='video/webm'> -->
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </video>
+        <div id="box">
+            <div class="tag"></div>
+        </div>
+    
+    <script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.js"></script>
+    <script src="http://vjs.zencdn.net/5.19.2/video.js"></script>
+    <script>
+        var player = videojs('my-video')
+        console.log(player)
+        player.on('ended', function () {
+            this.dispose()
+        })
+        player.ready(function () {
+            var howLoudIsIt = player.volume()
+            player.volume(0.5)
+            // console.log(player.muted())
+            // player.muted(true)
+            player.requestFullscreen()
+            // // player.muted(true)
+            // console.log(player.isFullscreen())
+            // player.isFullscreen(true)
+            // console.log(player.isFullscreen())
+            // player.play()
+            // player.currentTime(30)
+            // var lengthofVideo = player.duration()
+            // console.log(lengthofVideo)
+            console.log(player.bufferedPercent())
+        })
+        $('#box').hover(function(){
+            $('.video-js').addClass('fullScreen')
+            $('#box').addClass('fullScreen')
+        },function(){
+            $('.video-js').removeClass('fullScreen')
+            $('#box').removeClass('fullScreen')
+        })
+    </script>
+</body>
+</html>
