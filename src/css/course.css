@@ -37,6 +37,7 @@ article {
   margin: 60px auto;
 }
 article section.course-detail {
+  background-color: #fff;
   -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
           box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   padding: 20px 0px 56px 20px;
@@ -49,6 +50,7 @@ article section.course-detail .image {
   height: 250px;
   display: inline-block;
   vertical-align: middle;
+  margin-right: 18px;
 }
 article section.course-detail .course-introdution {
   display: inline-block;
@@ -91,6 +93,7 @@ article section.course-detail .course-introdution .enterbtn i {
   font-size: 14px;
 }
 article section.something-about-video .tab {
+  background-color: #fff;
   padding: 22px 0px 22px 36px;
   margin-bottom: 18px;
   -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
@@ -106,6 +109,7 @@ article section.something-about-video .tab a:hover {
   color: #fff;
 }
 article section.something-about-video .columns {
+  background-color: #fff;
   -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
           box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
@@ -117,6 +121,7 @@ article section.something-about-video .columns .tab-name {
   border-bottom: 1px solid #ccc;
 }
 article section.something-about-video #comments {
+  background-color: #fff;
   font-size: 12px;
   padding: 13px 23px 20px 13px;
 }

@@ -1,0 +1,120 @@
+body {
+  padding-bottom: 100px;
+}
+section.self-information {
+  max-width: 1577px;
+  margin: 0 auto;
+  height: 143px;
+  padding-top: 45px;
+  overflow: hidden;
+  backgrouns: #2389cb;
+  background: -webkit-gradient(linear, 0 0, right 0, from(#2389cb), to(rgba(35, 137, 203, 0.7)));
+  background: -moz-linear-gradient(left, #2389cb, rgba(35, 137, 203, 0.7));
+}
+section.self-information .wrap {
+  height: 98px;
+}
+section.self-information .wrap .avatar {
+  width: 94px;
+  heigt: 94px;
+  border-radius: 50%;
+  border: 5px solid #bbe9e0;
+  float: left;
+  overflow: hidden;
+}
+section.self-information .wrap .avatar img {
+  width: 100%;
+  height: 100%;
+}
+section.self-information .wrap .content {
+  margin-left: 110px;
+  color: #fff;
+}
+section.self-information .wrap .content .guest {
+  font-szie: 20px;
+  line-height: 56px;
+}
+section.self-information .wrap .content .have-lessons {
+  font-size: 14px;
+}
+article {
+  width: 1200px;
+  margin: 0 auto;
+}
+article .firsttab {
+  margin-top: 4px;
+  margin-bottom: 40px;
+  background-color: #fff;
+}
+article .firsttab a {
+  font-size: 18px;
+  color: #666;
+  display: inline-block;
+  width: 126px;
+  line-height: 58px;
+  margin-right: 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 28px;
+}
+article .firsttab a:hover {
+  color: #2389cb;
+  border-bottom: 2px solid #2389cb;
+}
+article .mycourses {
+  background-color: #fff;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+article .mycourses a {
+  width: 126px;
+  display: inline-block;
+  line-height: 40px;
+  color: #666;
+  text-align: center;
+}
+article .mycourses a:hover {
+  color: #2389cb;
+}
+article .wrap .content {
+  margin-leftf: 0;
+}
+article .wrap .course {
+  margin-bottom: 28px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding: 0;
+  width: 217px;
+  height: auto;
+  margin-right: 22px;
+}
+article .wrap .course.live-streaming .header {
+  background-color: #000000;
+}
+article .wrap .course.live-streaming .body label {
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  line-height: 70px;
+}
+article .wrap .course.live-streaming .body .meetingbtn {
+  margin-top: 0;
+}
+article .wrap .course .body {
+  padding: 0 9px;
+}
+article .wrap .course .body .meetingbtn {
+  width: 125px;
+  height: 28px;
+  display: block;
+  margin: auto;
+  line-height: 28px;
+  text-align: center;
+  border: 1px solid #2389cb;
+  border-radius: 15px;
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 18px;
+  color: #2389cb;
+}

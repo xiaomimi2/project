@@ -1,6 +1,8 @@
 body {
   font-family: 'Microsoft yahei' !important;
+  background-color: #f6f6f6;
 }
+@blue =#2389cb;
 header {
   width: 1200px;
   background-color: #fff;
@@ -62,6 +64,7 @@ header .items li .babel {
   background-color: #2389cb;
   color: #fff;
 }
+/*搜索框*/
 .searchBar {
   width: 590px;
   height: 38px;
@@ -138,4 +141,79 @@ header .items li .babel {
   width: 68px;
   text-align: center;
   line-height: 20px;
+}
+/*五个课程排列表*/
+.wrap {
+  width: 1200px;
+  margin: auto;
+}
+.wrap:before,
+.wrap:after {
+  content: " ";
+  display: table;
+}
+.wrap:after {
+  clear: both;
+}
+.wrap .content {
+  width: 1400px;
+  margin-left: -9px;
+}
+.wrap .content .coursevideo {
+  height: 418px;
+  background-color: #333;
+  margin-top: -20px;
+  width: 218px;
+  margin-right: 23px;
+  float: left;
+}
+.wrap .content .lessons {
+  width: 964px;
+  float: left;
+}
+.wrap .content .lessons .course {
+  background-color: #333;
+  margin-bottom: 9px;
+}
+.wrap .course {
+  width: 236px;
+  height: 194px;
+  padding: 10px 9px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-left: 7px;
+  float: left;
+  background-color: #fff;
+}
+.wrap .course:hover {
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+.wrap .course .header {
+  height: 124px;
+  overflow: hidden;
+  position: relative;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.wrap .course .header img {
+  max-width: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.wrap .course .body p {
+  line-height: 22px;
+  font-size: 12px;
+  font-family: 'Micorsoft yahei';
+}
+.wrap .course .body .subject {
+  color: #188eee;
+}
+.wrap .course .body .teacher {
+  float: right;
+  color: #999;
 }

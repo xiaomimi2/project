@@ -1,33 +1,3 @@
-body {
-  background-color: #f6f6f6;
-}
-header {
-  padding: 11px 0;
-  height: 38px;
-  line-height: 38px;
-  width: 100%;
-  margin: 0;
-  color: #fff;
-  background-color: #303643;
-  position: relative;
-}
-header .container {
-  width: 1200px;
-  margin: 0 auto;
-}
-header .logo {
-  font-size: 18px;
-  color: #fff;
-  background: url('../image/logo-white.png') 0 0 no-repeat;
-  padding-left: 60px;
-  font-weight: normal;
-}
-header .loginer a {
-  color: #fff;
-}
-header .items a {
-  color: #fff;
-}
 article.choose-teacher {
   width: 1200px;
   margin: 0 auto;
@@ -36,6 +6,7 @@ article.choose-teacher {
 }
 article.choose-teacher nav {
   margin-top: 60px;
+  background-color: #fff;
   width: 912px;
   -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
           box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
@@ -87,10 +58,36 @@ article.choose-teacher nav .container {
 article.choose-teacher nav .container li {
   width: 120px;
   height: 120px;
-  overflow: hidden;
   margin-left: 58px;
   background: url('../image/avatar1.png') center center no-repeat;
   background-size: cover;
+  position: relative;
+}
+article.choose-teacher nav .container li span:first-child {
+  position: absolute;
+  width: 100%;
+  line-height: 48px;
+  left: 0;
+  text-align: center;
+  bottom: -48px;
+  color: #333;
+  font-size: 14px;
+}
+article.choose-teacher nav .container li span.add {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: none;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  line-height: 120px;
+}
+article.choose-teacher nav .container li:hover span.add {
+  display: block;
 }
 article.choose-teacher section {
   width: 270px;
@@ -120,6 +117,29 @@ article.choose-teacher section .choosed-teacher li {
   margin-right: 46px;
   text-align: center;
   margin-bottom: 30px;
+  position: relative;
+}
+article.choose-teacher section .choosed-teacher li img {
+  width: 100%;
+  height: 100%;
+}
+article.choose-teacher section .choosed-teacher li span.del {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: none;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  line-height: 80px;
+}
+article.choose-teacher section .choosed-teacher li:hover span.del {
+  display: block;
 }
 article.choose-teacher section .invite {
   display: block;
