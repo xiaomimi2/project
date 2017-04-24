@@ -4,8 +4,8 @@ article.choose-teacher{
        position: relative;
        background-color: #fff;
    nav{
-        margin-top:60px;
-        background-color: #fff;
+       margin-top:60px;
+       background-color: #fff;
        width:912px;
        box-shadow: 0px 0px 5px rgba(0,0,0,.3);
        min-height: 767px;
@@ -31,6 +31,7 @@ article.choose-teacher{
            margin-top:40px;
        }
        p{
+
            width: 100%;
            line-height: 49px;
            height:49px;
@@ -43,8 +44,17 @@ article.choose-teacher{
                margin-left:40px;
                a{
                    margin-right:48px;
+                   transition:all .2s ease-in;
+                   &:hover,&.active{
+                      color:#2389cb;
+                   }
                }
            }
+           // &:first-child{
+           //    span{
+           //      color:#2389cb;
+           //    }
+           // }
        }
        .container{
         padding:53px 24px 0px 24px;
@@ -56,24 +66,28 @@ article.choose-teacher{
             width:120px;
             height:120px;
             margin-left:58px;
-            background: url('../image/avatar1.png') center center no-repeat;
-            background-size:cover;
             position: relative;
-            span:first-child{
-              position: absolute;
+            img{
+              width:100%;
+              height:100%;
+            }
+            span.name{
               text-align: center;
               width:100%;
               line-height: 48px;
-              left:0;
+              height:48px;
               text-align: center;
-              bottom:-48px;
+              
               color:#333;
+              display: block;
               font-size:14px;
             }
             span.add{
               position: absolute;
               width:100%;
               height:100%;
+              left:0;
+              top:0;
               background-color: rgba(0,0,0,.2);
               display:none;
               transition:all .2s ease;
@@ -118,6 +132,7 @@ article.choose-teacher{
                 text-align: center;
                 margin-bottom:30px;
                 position: relative;
+                font-size:14px;
                 img{
                   width:100%;
                   height:100%;
@@ -132,7 +147,7 @@ article.choose-teacher{
                   display:none;
                   transition:all .2s ease;
                   color:#fff;
-                  font-size:14px;
+                 
                   text-align: center;
                   line-height:80px;
 
@@ -157,6 +172,10 @@ article.choose-teacher{
             bottom:30px;
             transform:translateX(-50%);
             background-color: #2389cb;
+            transition:all .3s ease-in;
+            &:hover{
+              background-color: #39a3e7;
+            }
         }
     }
     

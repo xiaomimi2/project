@@ -48,6 +48,12 @@ article.choose-teacher nav p span {
 }
 article.choose-teacher nav p span a {
   margin-right: 48px;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+article.choose-teacher nav p span a:hover,
+article.choose-teacher nav p span a.active {
+  color: #2389cb;
 }
 article.choose-teacher nav .container {
   padding: 53px 24px 0px 24px;
@@ -59,24 +65,27 @@ article.choose-teacher nav .container li {
   width: 120px;
   height: 120px;
   margin-left: 58px;
-  background: url('../image/avatar1.png') center center no-repeat;
-  background-size: cover;
   position: relative;
 }
-article.choose-teacher nav .container li span:first-child {
-  position: absolute;
+article.choose-teacher nav .container li img {
+  width: 100%;
+  height: 100%;
+}
+article.choose-teacher nav .container li span.name {
   width: 100%;
   line-height: 48px;
-  left: 0;
+  height: 48px;
   text-align: center;
-  bottom: -48px;
   color: #333;
+  display: block;
   font-size: 14px;
 }
 article.choose-teacher nav .container li span.add {
   position: absolute;
   width: 100%;
   height: 100%;
+  left: 0;
+  top: 0;
   background-color: rgba(0, 0, 0, 0.2);
   display: none;
   -webkit-transition: all .2s ease;
@@ -118,6 +127,7 @@ article.choose-teacher section .choosed-teacher li {
   text-align: center;
   margin-bottom: 30px;
   position: relative;
+  font-size: 14px;
 }
 article.choose-teacher section .choosed-teacher li img {
   width: 100%;
@@ -134,7 +144,6 @@ article.choose-teacher section .choosed-teacher li span.del {
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
   color: #fff;
-  font-size: 14px;
   text-align: center;
   line-height: 80px;
 }
@@ -156,4 +165,9 @@ article.choose-teacher section .invite {
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
   background-color: #2389cb;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+article.choose-teacher section .invite:hover {
+  background-color: #39a3e7;
 }

@@ -12,6 +12,7 @@ header {
 }
 header .logo {
   float: left;
+  display: block;
   font-size: 30px;
   color: #333;
   background: url('../image/yunshi-logo.png') 0 0 no-repeat;
@@ -34,7 +35,7 @@ header .loginer span.avatar {
   border-radius: 50%;
   overflow: hidden;
   vertical-align: middle;
-  margin-top: -6px;
+  margin-top: -12px;
 }
 header .loginer img {
   max-width: 100%;
@@ -70,10 +71,10 @@ header .items li .babel {
   height: 38px;
   border-top: 1px solid #2389cb;
   border-bottom: 1px solid #2389cb;
-  font-size: 14px;
   color: #666;
   margin: auto;
   margin-bottom: 13px;
+  font-size: 0px;
 }
 .searchBar .select {
   float: left;
@@ -84,6 +85,7 @@ header .items li .babel {
   border-right: 2px solid #ccc;
   position: relative;
   line-height: 20px;
+  font-size: 14px;
 }
 .searchBar .select i.icon {
   font-size: 12px;
@@ -130,6 +132,7 @@ header .items li .babel {
   padding-left: 14px;
   width: 436px;
   outline: none;
+  font-size: 14px;
   line-height: 20px;
 }
 .searchBar .btn {
@@ -161,18 +164,16 @@ header .items li .babel {
 }
 .wrap .content .coursevideo {
   height: 418px;
-  background-color: #333;
   margin-top: -20px;
   width: 218px;
   margin-right: 23px;
   float: left;
 }
 .wrap .content .lessons {
-  width: 964px;
+  width: 1000px;
   float: left;
 }
 .wrap .content .lessons .course {
-  background-color: #333;
   margin-bottom: 9px;
 }
 .wrap .course {

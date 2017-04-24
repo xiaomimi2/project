@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索预约页</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" > 
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/search.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">云视教研管理平台</div>
+            <div class="loginer">
+                <a href="">注销</a>
+                <a href="">金鑫</a>
+                <span class="avatar"><img src="image/avatar1.png" alt=""></span>
+            </div>
+            <ul class="items">
+                <li><a href="myCourse.html">我的课堂</a><span class="babel">1</span></li>  
+                <li><a href="myCourse.html#history">历史课堂</a><!-- <span class="babel">1</span> --></li>
+            </ul>
+        </div>
+    </header>
+    <article class="choose-teacher">
+        <nav>
+            <ul class="level-name">
+                <li>首页<span>&gt;</span></li>
+                <li>搜索<span>&gt;</span></li>
+                <li>苏州小学</li>
+            </ul>
+            <div class="searchBar">
+                <div class="select">
+                    <div class="choosed">学校<i class="icon iconfont icon-triangle-copy"></i></div>
+                </div>
+                <div class="control">
+                    <input type="text" placeholder="搜素学校">
+                </div>
+                <span class="btn icon iconfont icon-sousuo-sousuo"></span>
+            </div>
+            <p>学校&nbsp;: <span>苏州小学</span></p>
+            <p>科目&nbsp;: <span><a href="">语文</a><a href="">数学</a><a href="">英语</a><a href="">美术</a></span></p>
+            <p>年级&nbsp;: <span><a href="">一年级</a><a href="">二年级</a><a href="">三年级</a><a href="">四年级</a></span></p>
+            <ul class="container">
+                <li><img src="image/avatar1.png" alt=""><span class="name">金鑫</span><span class="add">添加</span></li>     
+                <li><img src="image/avatar1.png" alt=""><span class="name">金鑫</span><span class="add">添加</span></li>     
+                <li><img src="image/avatar1.png" alt=""><span class="name">金鑫</span><span class="add">添加</span></li>     
+                <li><img src="image/avatar1.png" alt=""><span class="name">金鑫</span><span class="add">添加</span></li>     
+                <li><img src="image/avatar1.png" alt=""><span class="name">金鑫</span><span class="add">添加</span></li>     
+            </ul>
+        </nav>
+        <section>
+            <h1>已选老师</h1>
+            <ul class="choosed-teacher">
+                <!-- <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li>
+                <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li>
+                <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li>
+                <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li>
+                <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li> -->
+            </ul>
+            <span class="invite" id="invite">邀请</span>
+        </section>
+    </article>
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        /**
+         * [initial description] 初始化数据搜索  可能的school,teacher,grade,只会带一个search
+         * school=***
+         * @return {[type]} [description]
+         */
+        function initial(){
+            if(location.search){
+                var search = decodeURIComponent(location.search.slice(1).split('=')[1])
+                $('.choose-teacher .level-name').find('li:last').text(search)
+                $('.choose-teacher').find('p:first span').text(search).css('color','#2389cb')
+            }
+        }
+        initial()
+    </script>
+    <script src="js/invite.js"></script>
+</body>
+</html>

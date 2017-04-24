@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="http-equiv" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" > 
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
@@ -24,15 +25,15 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">云视教研管理平台</div>
+            <a class="logo" href="index.html">云视教研管理平台</a>
             <div class="loginer">
                 <a href="">注销</a>
                 <a href="">金鑫</a>
                 <span class="avatar"><img src="image/avatar1.png" alt=""></span>
             </div>
             <ul class="items">
-              <li><a href="">我的课堂</a><span class="babel">1</span></li>  
-              <li><a href="">历史课堂</a><span class="babel">1</span></li>  
+              <li><a href="myCourse.html">我的课堂</a><span class="babel">1</span></li>  
+              <li><a href="myCourse.html#history">历史课堂</a><!-- <span class="babel">1</span> --></li>  
             </ul>
         </div>
     </header>
@@ -47,7 +48,7 @@
                     听课时间&nbsp;:&nbsp;<span class="datepart1">2017-6-18</span>&nbsp;&nbsp;&nbsp;<span class="datepart2">15:00</span>
                 </p>
                 <div class="enterbtn">
-                    <span class="tovideo">备课预览</span>
+                    <a class="tovideo" href="video.html" id="preview">备课预览</a>
                 </div>
             </div>
         </section>
@@ -63,29 +64,31 @@
                 </div>
                 <span class="btn icon iconfont icon-sousuo-sousuo"></span>
             </div>
-            <p>学校&nbsp;: <span>苏州小学</span></p>
+            <p>学校&nbsp;: <span>苏州实验小学</span></p>
             <p>科目&nbsp;: <span><a href="">语文</a><a href="">数学</a><a href="">英语</a><a href="">美术</a></span></p>
             <p>年级&nbsp;: <span><a href="">一年级</a><a href="">二年级</a><a href="">三年级</a><a href="">四年级</a></span></p>
             <ul class="container">
-                <li><span>金鑫</span><span class="add">添加</span></li>     
-                <li><span>金鑫</span><span class="add">添加</span></li>     
-                <li><span>金鑫</span><span class="add">添加</span></li>     
-                <li><span>金鑫</span><span class="add">添加</span></li>     
-                <li><span>金鑫</span><span class="add">添加</span></li>     
+                <li><img src="image/avatar1.png" alt=""><span class="name">金鑫</span><span class="add">添加</span></li>     
+                <li><img src="image/avatar1.png" alt=""><span class="name">小吴</span><span class="add">添加</span></li>     
+                <li><img src="image/avatar1.png" alt=""><span class="name">小红</span><span class="add">添加</span></li>     
+                <li><img src="image/avatar1.png" alt=""><span class="name">小帅</span><span class="add">添加</span></li>     
+                <li><img src="image/avatar1.png" alt=""><span class="name">小郭</span><span class="add">添加</span></li>     
             </ul>
         </nav>
         <section>
             <h1>已选老师</h1>
             <ul class="choosed-teacher">
+                <!-- <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li>
                 <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li>
                 <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li>
                 <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li>
-                <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li>
-                <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li>
+                <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li> -->
             </ul>
-            <span class="invite">邀请</span>
+            <span class="invite" id="invite">邀请</span>
         </section>
     </article>
-    
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/invite.js"></script>
 </body>
 </html>

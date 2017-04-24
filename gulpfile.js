@@ -71,6 +71,10 @@ gulp.task('watch',function(){
 	gulp.watch('./src/image/**/*',['images'])
 })
 
+// gulp.task('concat',function(){
+// 	gulp.src('./src/js/*.js')
+// 		.pipe()
+// })
 
 gulp.task('wless',function(){
 	gulp.watch('./src/less/*.less',['less'])

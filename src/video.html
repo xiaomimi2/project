@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width;initial-scale=1;">
+	<meta name="viewport" content="width=device-width;initial-scale=1">
+	<meta name="renderer" content="webkit">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" > 
 	<title>观看视频页</title>
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/iconfont.css">
@@ -25,7 +27,7 @@
 <body>
 	<div class="fullscreen">
 		<div class="videoBox">
-			<span class="back">返回</span>
+			<span class="back" onclick="history.back()">返回</span>
 			<video id="my-video" class="video-js" controls preload="auto" data-setup="{}" style="display: none">
 				<source src="video/Honor.mp4" type='video/mp4'>
 					<p class="vjs-no-js">
@@ -40,49 +42,76 @@
 					<p>学科 : <span class="subject">数学</span>讲师 : <span class="teacher">金鑫</span></p>
 				</div>
 				<div class="custom-nav">
-					<span class="comments icon iconfont icon-iconfontedit active">讨论</span>
-					<span class="notes icon iconfont icon-bianji-copy">笔记</span>
+					<a href="#custom-body-comments" class="comments icon iconfont icon-iconfontedit active">讨论</a>
+					<a href="#custom-body-notes" class="notes icon iconfont icon-bianji-copy">笔记</a>
 				</div>
 				<div class="custom-body">
-					<div class="send-mes">
-						<textarea name="" id=""></textarea>
-						<span id="send-mime-comment">发布讨论</span>
+					<div id="custom-body-comments">
+						<div class="send-mes">
+							<textarea name="" id=""></textarea>
+							<span id="send-mime-comment">发布讨论</span>
+						</div>
+						<div class="scroll-message">
+							<div  class ="commentsimilar">
+								<div class="avatar">
+									<img src="image/avatar1.png" alt="">
+									<span class="username">金鑫</span>
+								</div>
+								<div class="comments-content">
+									<p>这个是讨论讨论</p>
+									<p class="operation">
+										<span class="sendtime">2017-12-7&nbsp;15:30</span>
+									</p> 
+								</div>  
+							</div> 
+						</div>
 					</div>
-					<div class="scroll-message">
-						<div id ="comments">
-							<div class="avatar">
-								<img src="image/avatar1.png" alt="">
-								<span class="username">金鑫</span>
-							</div>
-							<div class="comments-content">
-								<p>阿里看见开了家安科技的克拉克记录卡撒娇大开杀戒的考拉结束了就对啦三剑客点击</p>
-								<p class="operation">
-									<span class="sendtime">2017-12-7&nbsp;15:30</span>
-								</p> 
-							</div>  
-						</div> 
+					<div id="custom-body-notes">
+						<div class="send-mes">
+							<textarea name="" ></textarea>
+							<span id="send-mime-notes">发布笔记</span>
+						</div>
+						<div class="scroll-message">
+							<div  class="commentsimilar">
+								<div class="avatar">
+									<img src="image/avatar1.png" alt="">
+									<span class="username">金鑫</span>
+								</div>
+								<div class="comments-content">
+									<p>这个是笔记</p>
+									<p class="operation">
+										<span class="sendtime">2017-12-7&nbsp;15:30</span>
+									</p> 
+								</div>  
+							</div> 
+						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 
 
 		<script src="http://vjs.zencdn.net/5.8.8/video.js"></script>  
 		<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/common.js"></script>
 		<script>
 			var myplayer = videojs('my-video')
 			var CUSTOMWIDTH = 228;
+			var comments = new mycommonEvent.Tab($('.custom-nav a:eq(0)'))
+			var notes = new mycommonEvent.Tab($('.custom-nav a:eq(1)'))
+			var staticHeight = $('.custom-nav').height()+$('.custom-header').height()+$('.send-mes').height();
 			myplayer.ready(function(){
 				var $myvideo = $('#my-video')
 				console.log('ready')
 				console.log($('.vjs-fullscreen-control'));
-				
 				$myvideo[0].style.display="block";
 				$myvideo.find('video')[0].style.display='block';
 				function changeVideoSize(){
 					var w = $(window).width();
 					var h = $(window).height();
 					console.log('resize',w)
+					$('.scroll-message').height(h -  staticHeight)
 					var CUSTOMWIDTH = 228;
 					if(w > 528) {
 						var videoW = Math.round(w - CUSTOMWIDTH)
@@ -94,9 +123,60 @@
 						 console.log($myvideo.height())
 					}
 				}
+				//让视频文件自适应屏幕尺寸
 				changeVideoSize();
 				$(window).on('resize',changeVideoSize);
+				//讨论功能和笔记功能
+				$('#send-mime-comment,#send-mime-notes').on('click',function(){
+					var $textarea = $(this).siblings('textarea')
+					console.log($textarea.val())
+					if($textarea.val() === '') {
+						return false
+					}
+					var data = {
+						name:'金鑫',
+						imgUrl:'image/avatar1.png',
+						comments:$textarea.val(),
+						time: formdate()
+					}
+					$textarea.val('');
+					console.log(Math.round(myplayer.currentTime()))
+					addToDialog ($(this),data)
+				})
+
+
 			})
+
+			function addToDialog (dom,data) {
+				var $column = $('<div  class ="commentsimilar">'+
+							'<div class="avatar">'+
+								'<img src="'+ data.imgUrl +'" alt="">'+
+								'<span class="username">'+ data.name +'</span>'+
+							'</div>'+
+							'<div class="comments-content">'+
+								'<p>'+ data.comments +'</p>'+
+								'<p class="operation">'+
+									'<span class="sendtime">'+data.time+'</span>'+
+								'</p>' +
+							'</div> ' +
+						'</div> ')
+				var $parent = dom.parent().siblings()
+				$parent.append($column)	
+				var columnHeight = $column.height()
+				// console.log('height',columnHeight)
+				// 这里的20是margin
+				$parent.scrollTop($parent.scrollTop() + columnHeight + 20)
+			}
+
+			function formdate () {
+				var date = new Date()
+				var year = date.getFullYear()
+				var month = date.getMonth() + 1
+				var day = date.getDate()
+				var hour = date.getHours()
+				var minutes = date.getMinutes()
+				return year + '-' + month + '-' + day + '&nbsp;' + hour + ':' + minutes 
+			}
 
 		</script>
 	</body>

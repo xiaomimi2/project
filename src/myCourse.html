@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>搜索预约页</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" > 
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
@@ -12,15 +14,15 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">云视教研管理平台</div>
+           <a class="logo" href="index.html">云视教研管理平台</a>
             <div class="loginer">
                 <a href="">注销</a>
                 <a href="">金鑫</a>
                 <span class="avatar"><img src="image/avatar1.png" alt=""></span>
             </div>
             <ul class="items">
-              <li><a href="">我的课堂</a><span class="babel">1</span></li>  
-              <li><a href="">历史课堂</a><span class="babel">1</span></li>  
+              <li><a href="myCourse.html">我的课堂</a><span class="babel">1</span></li>  
+              <li><a href="myCourse.html#history">历史课堂</a><!-- <span class="babel">1</span> --></li>
             </ul>
         </div>
     </header>
@@ -37,13 +39,13 @@
     </section>
     <article>
         <div class="firsttab">
-            <a href="">我预约的</a>
+            <a href="" class="active">我预约的</a>
             <a href="">我被预约</a>
         </div>
         <div class="mycourses">
             <div class="secondtab">
                 <a href="">按时间排序</a>
-                <a href="">按前后排序</a>
+                <a href="" class="active">按前后排序</a>
             </div>
             
         </div>
@@ -56,7 +58,7 @@
                     <div class="body">
                         <p>默默学校五年级 </p>
                         <p><span class="subject">语文</span><span class="teacher">金鑫</span></p>
-                        <span class="meetingbtn">进入</span>
+                        <a class="meetingbtn" href="course.html">进入</a>
                     </div>
                 </div>
                 <div class="course">
@@ -66,7 +68,7 @@
                     <div class="body">
                         <p>南京实验中学五年级 </p>
                         <p><span class="subject">英语</span><span class="teacher">金鑫</span></p>
-                         <span class="meetingbtn">进入</span>
+                         <a class="meetingbtn" href="course.html">进入</a>
                     </div>
                 </div>
                 <div class="course">
@@ -76,7 +78,7 @@
                     <div class="body">
                         <p>默默学校五年级 </p>
                         <p><span class="subject">英语</span><span class="teacher">金鑫</span></p>
-                         <span class="meetingbtn">进入</span>
+                         <a class="meetingbtn" href="course.html">进入</a>
                     </div>
                 </div>
                 <div class="course">
@@ -86,7 +88,7 @@
                     <div class="body">
                         <p>默默学校五年级 </p>
                         <p><span class="subject">语文</span><span class="teacher">金鑫</span></p>
-                         <span class="meetingbtn">进入</span>
+                         <a class="meetingbtn" href="course.html">进入</a>
                     </div>
                 </div>
                 <div class="course">
@@ -96,20 +98,31 @@
                     <div class="body">
                         <p>默默学校五年级 </p>
                         <p><span class="subject">语文</span><span class="teacher">金鑫</span></p>
-                         <span class="meetingbtn">进入</span>
+                         <a class="meetingbtn" href="course.html">进入</a>
                     </div>
                 </div>
                 <div class="course live-streaming">
                     <div class="header">
-                        
+                        <img src="image/直播.png" alt="">
                     </div>
                     <div class="body">
                         <label>直播</label>
-                         <span class="meetingbtn">进入</span>
+                         <a class="meetingbtn" href="course.html">进入</a>
                     </div>
                 </div>
             </div> 
         </div>
     </article>
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        $('.meetingbtn').on('click',function(ev){
+            if(location.hash === '#history'){
+                ev.preventDefault();
+                location.href = $(this).attr('href') + '?history=1';
+            }
+            
+        })
+    </script>
 </body>
 </html>    

@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="http-equiv" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" > 
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
@@ -12,15 +13,15 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">云视教研管理平台</div>
+            <a class="logo" href="index.html">云视教研管理平台</a>
             <div class="loginer">
-                <a href="">注销</a>
+                <a href="">注销</a>s
                 <a href="">金鑫</a>
                 <span class="avatar"><img src="image/avatar1.png" alt=""></span>
             </div>
             <ul class="items">
-              <li><a href="">我的课堂</a><span class="babel">1</span></li>  
-              <li><a href="">历史课堂</a><span class="babel">1</span></li>  
+                <li><a href="myCourse.html">我的课堂</a><span class="babel">1</span></li>  
+                <li><a href="myCourse.html#history">历史课堂</a><!-- <span class="babel">1</span> --></li>  
             </ul>
             <div class="searchBar">
                 <div class="select">
@@ -44,39 +45,90 @@
                     听课时间&nbsp;:&nbsp;<span class="datepart1">2017-6-18</span>&nbsp;&nbsp;&nbsp;<span class="datepart2">15:00</span>
                 </p>
                 <div class="enterbtn">
-                    <span class="tovideo">备课预览</span>
-                    <span class="beginclass">开始听课</span>
+                    <a class="tovideo" href="video.html" id="preview">备课预览</a>
+                    <a class="beginclass" id="beginclass">开始听课</a>
                     <i>(已开始)</i>
                 </div>
             </div>
         </section>
         <section class="something-about-video">
             <div class="tab">
-                <a href="#members">开会成员</a>
+                <a href="#members" class="active">开会成员</a>
                 <a href="#notes">笔记</a>
                 <a href="#comments">讨论</a>
             </div>
             <div class="columns">
-                <div class="tab-name">笔记</div>
+                <!-- <div class="tab-name">笔记</div> -->
                 <div id ="comments">
-                    <div class="avatar">
-                        <img src="image/avatar1.png" alt="">
+                    <div class="comments-item">   
+                        <div class="avatar">
+                            <img src="image/avatar1.png" alt="">
+                        </div>
+                        <div class="comments-content">
+                           <p><span class="username">金鑫</span><span class="play-time"><i class="icon iconfont icon-bofang"></i><i class="current">01:06</i></span></p>
+                           <p>阿里看见开了家安科技的克拉克记录卡撒娇大开杀戒的考拉结束了就对啦三剑客点击</p>
+                           <p class="operation">
+                               <span class="sendtime">2017-12-7&nbsp;15:30</span>
+                               <span class="do">
+                                   <i class="icon iconfont icon-bianji-copy">编辑</i>
+                                   <i class="icon iconfont icon-shanchu">删除</i>
+                               </span>
+                           </p> 
+                        </div>  
                     </div>
-                    <div class="comments-content">
-                       <p><span class="username">金鑫</span><span class="play-time"><i class="icon iconfont icon-bofang"></i><i class="current">01:06</i></span></p>
-                       <p>阿里看见开了家安科技的克拉克记录卡撒娇大开杀戒的考拉结束了就对啦三剑客点击</p>
-                       <p class="operation">
-                           <span class="sendtime">2017-12-7&nbsp;15:30</span>
-                           <span class="do">
-                               <i class="icon iconfont icon-bianji-copy">编辑</i>
-                               <i class="icon iconfont icon-shanchu">删除</i>
-                           </span>
-                       </p> 
-                    </div>  
-            </div> 
+                </div> 
+                <ul id="members">
+                    <li><img src="image/user1.jpg" alt=""><span>金鑫</span></li>
+                    <li><img src="image/user2.jpg" alt=""><span>金鑫</span></li>
+                    <li><img src="image/user3.jpg" alt=""><span>金鑫</span></li>
+                    <li><img src="image/user4.jpg" alt=""><span>金鑫</span></li>
+                </ul>
+                <div id="notes">
+                    <div class="comments-item">   
+                        <div class="avatar">
+                            <img src="image/avatar1.png" alt="">
+                        </div>
+                        <div class="comments-content">
+                           <p><span class="username">金鑫</span><span class="play-time"><i class="icon iconfont icon-bofang"></i><i class="current">01:06</i></span></p>
+                           <p>阿里看见开了家安科技的克拉克记录卡撒娇大开杀戒的考拉结束了就对啦三剑客点击</p>
+                           <p class="operation">
+                               <span class="sendtime">2017-12-7&nbsp;15:30</span>
+                               <span class="do">
+                                   <i class="icon iconfont icon-bianji-copy">编辑</i>
+                                   <i class="icon iconfont icon-shanchu">删除</i>
+                               </span>
+                           </p> 
+                        </div>  
+                    </div>
+                    
+                </div>
             </div>
-           
         </section>
     </article>
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        var comments = new mycommonEvent.Tab($('.tab a:eq(0)'))
+        var notes = new mycommonEvent.Tab($('.tab a:eq(1)'))
+        var members = new mycommonEvent.Tab($('.tab a:eq(2)'))
+        if(location.search){
+            var isHistory = location.search.slice(1).split('=')[0] === 'history' ? true : false
+            var isLive =  location.search.slice(1).split('=')[0] === 'live' ? true : false
+        }
+        
+        if(isHistory) {
+            $('#beginclass').addClass('unactive')
+                .off('click')
+                .siblings('i').remove()
+
+        }
+        if(isLive) {
+            $('.enterbtn').html('<a class="beginclass" id="beginclass">开始听课</a>')
+            $('.image').css('backgroundImage','url("image/直播.png")')
+        }
+        $('.icon-shanchu').on('click',function(){
+            $(this).parents('.comments-item').remove();
+        })
+    </script>
 </body>
 </html>
