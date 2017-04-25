@@ -15,7 +15,7 @@
         <div class="container">
             <a class="logo" href="index.html">云视教研管理平台</a>
             <div class="loginer">
-                <a href="">注销</a>s
+                <a href="enter.html">注销</a>
                 <a href="">金鑫</a>
                 <span class="avatar"><img src="image/avatar1.png" alt=""></span>
             </div>
@@ -37,6 +37,7 @@
     <article>
         <section class="course-detail">
             <div class="image">
+
             </div>
             <div class="course-introdution">
                 <h1>苏州实验小学五年级</h1>
@@ -57,10 +58,10 @@
                 <a href="#notes">笔记</a>
                 <a href="#comments">讨论</a>
             </div>
-            <div class="columns">
+            <div class="columns" id="waterfall-column">
                 <!-- <div class="tab-name">笔记</div> -->
                 <div id ="comments">
-                    <div class="comments-item">   
+                   <!--  <div class="comments-item">   
                         <div class="avatar">
                             <img src="image/avatar1.png" alt="">
                         </div>
@@ -75,16 +76,17 @@
                                </span>
                            </p> 
                         </div>  
-                    </div>
+                    </div> -->
                 </div> 
                 <ul id="members">
+                    <li><img src="image/avatar1.png" alt=""><span>金鑫:讲师</span></li>
                     <li><img src="image/user1.jpg" alt=""><span>金鑫</span></li>
                     <li><img src="image/user2.jpg" alt=""><span>金鑫</span></li>
                     <li><img src="image/user3.jpg" alt=""><span>金鑫</span></li>
                     <li><img src="image/user4.jpg" alt=""><span>金鑫</span></li>
                 </ul>
                 <div id="notes">
-                    <div class="comments-item">   
+                   <!--  <div class="comments-item">   
                         <div class="avatar">
                             <img src="image/avatar1.png" alt="">
                         </div>
@@ -99,7 +101,7 @@
                                </span>
                            </p> 
                         </div>  
-                    </div>
+                    </div> -->
                     
                 </div>
             </div>
@@ -108,27 +110,117 @@
     <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/common.js"></script>
     <script>
-        var comments = new mycommonEvent.Tab($('.tab a:eq(0)'))
-        var notes = new mycommonEvent.Tab($('.tab a:eq(1)'))
-        var members = new mycommonEvent.Tab($('.tab a:eq(2)'))
-        if(location.search){
-            var isHistory = location.search.slice(1).split('=')[0] === 'history' ? true : false
-            var isLive =  location.search.slice(1).split('=')[0] === 'live' ? true : false
+        var users = JSON.parse(localStorage.getItem('USER'))
+        var members = JSON.parse(localStorage.getItem('INVITED_PEOPLE'))
+        
+         //初始化会议人员
+            var len = 0
+                for(var i in members) {
+                len++
+            }
+            if(members) {
+                $('.course-introdution .people-num').text(len + 1)
+            }
+            
+            //切换事件
+            var comments = new mycommonEvent.Tab($('.tab a:eq(2)'),renderNotes(dataComments,'#comments'))
+            var notes = new mycommonEvent.Tab($('.tab a:eq(1)'),renderNotes(dataNotes,'#notes'))
+            var members = new mycommonEvent.Tab($('.tab a:eq(0)'),renderMembers(members,'#members'))
+            $('.tab a:eq(0)').trigger('click');
+
+            if(location.search){
+                var isHistory = location.search.slice(1).split('=')[0] === 'history' ? true : false
+                var isLive =  location.search.slice(1).split('=')[0] === 'live' ? true : false
+            }
+            //历史
+            if(isHistory) {
+                $('#beginclass').addClass('unactive')
+                    .off('click')
+                    .siblings('i').remove()
+
+            }
+            //直播
+            if(isLive) {    
+                $('.enterbtn').html('<a class="beginclass" id="beginclass">开始听课</a>')
+                $('.image').css('backgroundImage','url("image/直播.png")')
+            }
+
+            //删除按钮 这个需要在每次渲染完毕后添加事件
+            $('.icon-shanchu').one('click',function(){
+                $(this).parents('.comments-item').remove();
+            })
+
+            //这里只给笔记做了瀑布流的效果
+            $(window).on('scroll',renderNotes(dataNotes,'#notes'))
+
+            //调起客户端，每一页都有验证登录。这里已经确定有登录用户了
+            $('#beginclass').on('click',function(){
+                console.log('调起客户端')
+                console.log(user.videouser,user.videopwd,user.roomid,user.realname)
+                mycommonEvent.openNet('58.211.191.42',user.videouser,user.videopwd,user.roomid,user.realname)
+            })
+
+            //搜索进入search.html
+            $('.searchBar .icon-sousuo-sousuo').on('click', function(){
+                window.location.href="search.html";
+            })
+
+       
+        
+        
+        //开会成员
+        
+        function renderMembers (members,id) {
+            console.log(members)
+            return function(){
+                var str = '<li><img src="image/avatar1.png" alt=""><span>金鑫:讲师</span></li>' 
+                if(members) {
+                    for(var member in members) {
+                        str += '<li><img src="' + members[member].img +'" alt=""><span>' + member +'</span></li>'
+                    }
+                    $(id).html(str)
+                }
+            } 
+        }
+        //会议和笔记页面渲染
+        function renderNotes(data,id) {
+            var index = 0
+            return function(){
+                console.log(mycommonEvent.waterfallOfNotFIxedHeight($(id)))
+                console.log(index)
+                //index到了data数据的总长就可以了
+                if(index === data.length - 1) return
+                for(var i = index + 1; i < data.length; i++ ){
+                    if(index == 0 || mycommonEvent.waterfallOfNotFIxedHeight($(id))) {
+                        //只有瀑布流加载的情况下index加
+                        index = i
+                        var div = $(' <div class="comments-item">'+   
+                                   '<div class="avatar">'+
+                                        '<img src="'+data[i].img+'" alt="">'+
+                                    '</div>'+
+                                    '<div class="comments-content">'+
+                                       '<p><span class="username">'+data[i].name+'</span><span class="play-time"><i class="icon iconfont icon-bofang"></i><i class="current">'+mycommonEvent.formatVideoTime(data[i].videotime)+'</i></span></p>'+
+                                       '<p>'+ data[i].content +'</p>'+
+                                       '<p class="operation">'+
+                                           '<span class="sendtime">'+data[i].date+'</span>'+
+                                           '<span class="do">'+
+                                               '<i class="icon iconfont icon-bianji-copy">编辑</i>'+
+                                               '<i class="icon iconfont icon-shanchu">删除</i>'+
+                                           '</span>'+
+                                       '</p>'+
+                                    '</div>'+  
+                                '</div>')
+                        $(id).append(div)
+                    } else {
+                        break;
+                    }
+                }
+                
+            }
         }
         
-        if(isHistory) {
-            $('#beginclass').addClass('unactive')
-                .off('click')
-                .siblings('i').remove()
 
-        }
-        if(isLive) {
-            $('.enterbtn').html('<a class="beginclass" id="beginclass">开始听课</a>')
-            $('.image').css('backgroundImage','url("image/直播.png")')
-        }
-        $('.icon-shanchu').on('click',function(){
-            $(this).parents('.comments-item').remove();
-        })
+
     </script>
 </body>
 </html>

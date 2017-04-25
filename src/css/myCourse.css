@@ -75,8 +75,14 @@ article .mycourses a {
   text-align: center;
 }
 article .mycourses a:hover,
-article .mycourses a:active {
+article .mycourses a.active {
   color: #2389cb;
+}
+article .wrap #reserve {
+  display: block;
+}
+article .wrap #reserved {
+  display: none;
 }
 article .wrap .content {
   margin-leftf: 0;

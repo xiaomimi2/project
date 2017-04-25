@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width;initial-scale=1">
 	<meta name="renderer" content="webkit">
-    <meta http-equiv="x-ua-compatible" content="IE=Edge" > 
+    <meta http-equiv="x-ua-compatible" content="IE=Edge"> 
 	<title>观看视频页</title>
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/iconfont.css">
@@ -52,7 +52,7 @@
 							<span id="send-mime-comment">发布讨论</span>
 						</div>
 						<div class="scroll-message">
-							<div  class ="commentsimilar">
+							<!-- <div  class ="commentsimilar">
 								<div class="avatar">
 									<img src="image/avatar1.png" alt="">
 									<span class="username">金鑫</span>
@@ -63,7 +63,7 @@
 										<span class="sendtime">2017-12-7&nbsp;15:30</span>
 									</p> 
 								</div>  
-							</div> 
+							</div>  -->
 						</div>
 					</div>
 					<div id="custom-body-notes">
@@ -72,7 +72,7 @@
 							<span id="send-mime-notes">发布笔记</span>
 						</div>
 						<div class="scroll-message">
-							<div  class="commentsimilar">
+							<!-- <div  class="commentsimilar">
 								<div class="avatar">
 									<img src="image/avatar1.png" alt="">
 									<span class="username">金鑫</span>
@@ -83,7 +83,7 @@
 										<span class="sendtime">2017-12-7&nbsp;15:30</span>
 									</p> 
 								</div>  
-							</div> 
+							</div>  -->
 						</div>
 					</div>
 				</div>
@@ -99,8 +99,28 @@
 			var myplayer = videojs('my-video')
 			var CUSTOMWIDTH = 228;
 			var comments = new mycommonEvent.Tab($('.custom-nav a:eq(0)'))
-			var notes = new mycommonEvent.Tab($('.custom-nav a:eq(1)'))
+			var notes = new mycommonEvent.Tab($('.custom-nav a:eq(1)'), renderNotes)
 			var staticHeight = $('.custom-nav').height()+$('.custom-header').height()+$('.send-mes').height();
+			var timer
+			//发布绑定事件
+			$('#send-mime-comment,#send-mime-notes').on('click',function(){
+				var $textarea = $(this).siblings('textarea')
+				console.log($textarea.val())
+				if($textarea.val() === '') {
+					return false
+				}
+				var data = {
+					name:'金鑫',
+					img:'image/avatar1.png',
+					content:$textarea.val(),
+					date: mycommonEvent.formdate()
+				}
+				$textarea.val('');
+				console.log(Math.round(myplayer.currentTime()))
+				addToDialog ($(this),data)
+			})
+
+			//视频准备好的事件
 			myplayer.ready(function(){
 				var $myvideo = $('#my-video')
 				console.log('ready')
@@ -127,36 +147,30 @@
 				changeVideoSize();
 				$(window).on('resize',changeVideoSize);
 				//讨论功能和笔记功能
-				$('#send-mime-comment,#send-mime-notes').on('click',function(){
-					var $textarea = $(this).siblings('textarea')
-					console.log($textarea.val())
-					if($textarea.val() === '') {
-						return false
-					}
-					var data = {
-						name:'金鑫',
-						imgUrl:'image/avatar1.png',
-						comments:$textarea.val(),
-						time: formdate()
-					}
-					$textarea.val('');
-					console.log(Math.round(myplayer.currentTime()))
-					addToDialog ($(this),data)
+				
+				myplayer.on('play',function(){
+					timer = setInterval(function(){
+						console.log('play')
+						console.log(Math.floor(myplayer.currentTime()))
+						sortByTimeAndSendToDialog($('#send-mime-comment'),dataComments,Math.floor(myplayer.currentTime()))
+					},1000)
+				})
+				myplayer.on('pause', function() {
+					clearInterval(timer)
 				})
 
-
 			})
-
+			//增加到对话
 			function addToDialog (dom,data) {
 				var $column = $('<div  class ="commentsimilar">'+
 							'<div class="avatar">'+
-								'<img src="'+ data.imgUrl +'" alt="">'+
+								'<img src="'+ data.img +'" alt="">'+
 								'<span class="username">'+ data.name +'</span>'+
 							'</div>'+
 							'<div class="comments-content">'+
-								'<p>'+ data.comments +'</p>'+
+								'<p>'+ data.content +'</p>'+
 								'<p class="operation">'+
-									'<span class="sendtime">'+data.time+'</span>'+
+									'<span class="sendtime">'+data.date+'</span>'+
 								'</p>' +
 							'</div> ' +
 						'</div> ')
@@ -168,14 +182,23 @@
 				$parent.scrollTop($parent.scrollTop() + columnHeight + 20)
 			}
 
-			function formdate () {
-				var date = new Date()
-				var year = date.getFullYear()
-				var month = date.getMonth() + 1
-				var day = date.getDate()
-				var hour = date.getHours()
-				var minutes = date.getMinutes()
-				return year + '-' + month + '-' + day + '&nbsp;' + hour + ':' + minutes 
+			//自动添加评论到页面
+			function sortByTimeAndSendToDialog(btn,data,currentTime) {
+				console.log(btn,data,currentTime)
+				for(var i = 0; i < data.length; i++){
+					if(data[i].videotime === currentTime) {
+						  data.splice(i,1)
+						  console.log(data.length)
+						  addToDialog($(btn),data[i])
+					}
+				}
+			}
+			
+			function renderNotes(){
+				console.log(dataNotes)
+				for(var i = 0; i < dataNotes.length; i++ ) {
+					addToDialog($('#send-mime-notes'), dataNotes[i])
+				}
 			}
 
 		</script>

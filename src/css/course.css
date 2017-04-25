@@ -141,6 +141,12 @@ article section.something-about-video #notes {
   padding: 13px 23px 20px 13px;
   min-height: 360px;
 }
+article section.something-about-video #comments .comments-item,
+article section.something-about-video #notes .comments-item {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 15px;
+}
 article section.something-about-video #comments .avatar,
 article section.something-about-video #notes .avatar {
   width: 50px;

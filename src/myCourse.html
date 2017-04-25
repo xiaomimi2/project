@@ -16,7 +16,7 @@
         <div class="container">
            <a class="logo" href="index.html">云视教研管理平台</a>
             <div class="loginer">
-                <a href="">注销</a>
+                <a href="enter.html">注销</a>
                 <a href="">金鑫</a>
                 <span class="avatar"><img src="image/avatar1.png" alt=""></span>
             </div>
@@ -39,8 +39,8 @@
     </section>
     <article>
         <div class="firsttab">
-            <a href="" class="active">我预约的</a>
-            <a href="">我被预约</a>
+            <a href="#reserve" class="active">我预约的</a>
+            <a href="#reserved">我被预约</a>
         </div>
         <div class="mycourses">
             <div class="secondtab">
@@ -50,7 +50,7 @@
             
         </div>
         <div class="wrap">
-            <div class="content">
+            <div class="content" id="reserve">
                 <div class="course">
                     <div class="header">
                         <img src="image/poster-rec1.jpg" alt="">
@@ -111,6 +111,67 @@
                     </div>
                 </div>
             </div> 
+            <div class="content" id="reserved">
+                <div class="course">
+                    <div class="header">
+                        <img src="image/poster-re2c.jpg" alt="">
+                    </div>
+                    <div class="body">
+                        <p>南京实验中学五年级 </p>
+                        <p><span class="subject">英语</span><span class="teacher">金鑫</span></p>
+                         <a class="meetingbtn" href="course.html">进入</a>
+                    </div>
+                </div>
+                 <div class="course">
+                    <div class="header">
+                        <img src="image/poster-rec1.jpg" alt="">
+                    </div>
+                    <div class="body">
+                        <p>默默学校五年级 </p>
+                        <p><span class="subject">语文</span><span class="teacher">金鑫</span></p>
+                        <a class="meetingbtn" href="course.html">进入</a>
+                    </div>
+                </div>
+                <div class="course">
+                    <div class="header">
+                        <img src="image/poster-rec3.jpg" alt="">
+                    </div>
+                    <div class="body">
+                        <p>默默学校五年级 </p>
+                        <p><span class="subject">英语</span><span class="teacher">金鑫</span></p>
+                         <a class="meetingbtn" href="course.html">进入</a>
+                    </div>
+                </div>
+                <div class="course">
+                    <div class="header">
+                        <img src="image/poster-rec4.jpg" alt="">
+                    </div>
+                    <div class="body">
+                        <p>默默学校五年级 </p>
+                        <p><span class="subject">语文</span><span class="teacher">金鑫</span></p>
+                         <a class="meetingbtn" href="course.html">进入</a>
+                    </div>
+                </div>
+                <div class="course">
+                    <div class="header">
+                        <img src="image/poster-rec5.jpg" alt="">
+                    </div>
+                    <div class="body">
+                        <p>默默学校五年级 </p>
+                        <p><span class="subject">语文</span><span class="teacher">金鑫</span></p>
+                         <a class="meetingbtn" href="course.html">进入</a>
+                    </div>
+                </div>
+                <div class="course live-streaming">
+                    <div class="header">
+                        <img src="image/直播.png" alt="">
+                    </div>
+                    <div class="body">
+                        <label>直播</label>
+                         <a class="meetingbtn" href="course.html">进入</a>
+                    </div>
+                </div>
+            </div> 
         </div>
     </article>
     <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
@@ -121,8 +182,12 @@
                 ev.preventDefault();
                 location.href = $(this).attr('href') + '?history=1';
             }
-            
         })
+        var myReserve = new mycommonEvent.Tab($('.firsttab a:eq(0)'))
+        var myReserved = new mycommonEvent.Tab($('.firsttab a:eq(1)'))
+        var time = new mycommonEvent.Tab($('.secondtab a:eq(0)'))
+        var normal = new mycommonEvent.Tab($('.secondtab a:eq(1)'))
+        localStorage.removeItem('INVITED_PEOPLE')
     </script>
 </body>
 </html>    
