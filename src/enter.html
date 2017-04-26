@@ -3,41 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>测试账号页</title>
-    <style>
-        html,body{
-            width:100%;
-            height:100%;
-            background-color: #2389cb;
-        }
-        .box{
-            width:80%;
-            position: absolute;
-            left:50%;
-            top:50%;
-            transform:translate(-50%, -50%);
-        }
-        .user1{
-            height:50px;
-            font-size:40px;
-            color:#333;
-            line-height: 50px;
-            text-align:center;
-            background-color: #fff;
-            font-weight:bold;
-            margin-bottom:30px;
-            border-radius:25px;
-            cursor:pointer;
-        }
-    </style>
+    <meta http-equiv="x-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="css/reset1.css">
+    <link rel="stylesheet" href="css/index1.css">
 </head>
 <body>
-    <div class="box">
-        <div class="user1" title="张三">张三</div>
-        <div class="user1" title="李四">李四</div>
-        <div class="user1" title="王五">王五</div>
+    <div class="container pr">
+     <img src="image/downloadbg.jpg" alt="" id="container-pic">
+        <div class="pic-title">
+            云视网络教研管理平台
+        </div>
+
+        <div class="login-Pop">
+         <div class="loginPop">
+            <p>
+                <label for="username">用户：</label>
+                <select id="videouser">
+                  <option value ="张三">张三</option>
+                  <option value ="李四">李四</option>
+                  <option value="王五">王五</option>
+                </select>
+            </p>
+            <p class="p-btn">
+                <a  id="enter">进入测试会议室</a>
+            </p>
+          <!--   <span>本机电脑如未安装客户端，请先下载安装客户端</span>
+            <p class="pcdown" >
+                客户端下载
+            </p> -->
+         </div>
+            
+        </div>
+        <div class="left fl pa">
+            <div class="left-con">
+                <div class="left-title">
+                    <img src="image/pic_ys_title.png" id="left-pic" alt="">
+                </div>
+                <p class="p-where">地址：苏州工业园区东平街270号澳洋顺昌科技大厦2D</p>
+                <p>电话：0512-65925680</p>
+                <p>网址：www.yunshisz.com</p>
+            </div>
+        </div>
+        <p id="text">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;苏州云视是一家在视频通讯领域为客户提供全面产品和解决方案的高新技术企业。公司自主研发的高清视频会议系统，以卓越的品质，便捷的使用以及较低的成本，为广大客户提供高清视频协作所需的一切功能。
+       </p>
     </div>
     <script>
     window.onload = function(){
+        
+
         var obj = {
             '张三':{
                 videouser:'jyt001',      
@@ -62,15 +78,182 @@
             }
         }
         localStorage.removeItem('USER')
-        var box = document.getElementsByTagName('div')[0]
-        var users = box.getElementsByTagName('div')
-        for(var i = 0; i < users.length; i++){
-            users[i].onclick = function(){
-                var name = this.title;
-                localStorage.setItem('USER',JSON.stringify(obj[name]));
-                window.location.href="index.html"
-            }
+        localStorage.removeItem('INVITED_PEOPLE')
+
+        var admin = document.getElementById('videouser')
+        var btn = document.getElementById('enter')
+        
+        btn.onclick = function(){
+            var name = admin.value;
+            var user = obj[name]
+            var comments = [{"name":"李老师","date":"20170421174252","content":"这一部分讲的很好！","img":'image/avatar.png'},
+            {"name":"张三","date":"2017-04-24&nbsp;16:19:14","content":"这一部分讲的很好！这一部分讲的很好！","img":"image/user1.jpg"},
+            {"name":"张三","date":"2017-04-24&nbsp;16:19:18","content":"这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！","img":"image/user1.jpg"},
+            {"name":"李四","date":"2017-04-24&nbsp;16:19:21","content":"这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！","img":"image/user2.jpg"},
+            {"name":"王五","date":"2017-04-24&nbsp;16:19:25","content":"这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！","img":"image/user3.jpg"},
+            {"name":"王五","date":"2017-04-24&nbsp;16:19:27","content":"这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！","img":"image/user3.jpg"},
+            {"name":"王五","date":"2017-04-24&nbsp;16:19:39","content":"这一部分讲的很好！","img":"image/user3.jpg"},
+            {"name":"张三","date":"2017-04-24&nbsp;16:19:41","content":"这一部分讲的很好！","img":"image/user1.jpg"},
+            {"name":"张三","date":"2017-04-24&nbsp;16:19:57","content":"这一部分讲的很好！adsad 3132阿斯顿撒旦这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！这一部分讲的很好！阿大声道","img":"image/user1.jpg"},
+            {"name":"张三","date":"2017-04-24&nbsp;16:20:01","content":"这一部分讲的很好！","img":"image/user1.jpg"},
+            {"name":"王五","date":"2017-04-24&nbsp;16:20:03","content":"这一部分讲的很好！这一部分讲的很好！","img":"image/user3.jpg"},
+            {"name":"张三","date":"2017-04-24&nbsp;16:20:39","content":"这一部分讲的很好！这一部分讲的很好！","img":"image/user1.jpg"},
+            {"name":"李四","date":"2017-04-24&nbsp;16:20:48","content":"这一部分讲的很好！这一部分讲的很好！qwdwqdwq的可能但是","img":"image/user2.jpg"},
+            {"name":"张三","date":"2017-04-24&nbsp;16:20:53","content":"这一部分讲的很好！","img":"image/user1.jpg"},
+            {"name":"李四","date":"2017-04-24&nbsp;16:23:26","content":"wqewqe","img":"image/user2.jpg"},
+            {"name":"李四","date":"2017-04-24&nbsp;16:36:28","content":"","img":"image/user2.jpg"},
+            {"name":"李四","date":"2017-04-25&nbsp;11:42:53","content":"多大事1我assad","img":"image/user2.jpg"},
+            {"name":"李四","date":"2017-04-25&nbsp;11:42:56","content":"多大事1我assadwwaewa","img":"image/user2.jpg"},
+            {"name":"李四","date":"2017-04-25&nbsp;11:42:59","content":"多大事1我assadwwaewa大的萨达","img":"image/user2.jpg"},
+            {"name":"张三","date":"2017-04-25&nbsp;15:15:50","content":"1221的撒的撒132萨达是","img":"image/user1.jpg"},
+            {"name":"李四","date":"2017-04-25&nbsp;17:06:09","content":"好啊好久","img":"image/user2.jpg"}]
+            var notes = [{
+                videotime:12,
+                date: '2017-4-8&nbsp;16:30',
+                content:'这一部分讲的很好！',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:14,
+                date: '2017-4-8&nbsp;16:54',
+                content:'笔记测试2',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:25,
+                date: '2017-4-8&nbsp;13:20',
+                content:'笔记测试3',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:36,
+                date: '2017-4-8&nbsp;15:15',
+                content:'笔记测试4',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:48,
+                date: '2017-4-8&nbsp;16:30',
+                content:'笔记测试5',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:12,
+                date: '2017-4-8&nbsp;16:30',
+                content:'笔记测试1',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:14,
+                date: '2017-4-8&nbsp;16:54',
+                content:'笔记测试2',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:25,
+                date: '2017-4-8&nbsp;13:20',
+                content:'笔记测试3',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:36,
+                date: '2017-4-8&nbsp;15:15',
+                content:'笔记测试4',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:48,
+                date: '2017-4-8&nbsp;16:30',
+                content:'笔记测试5',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:12,
+                date: '2017-4-8&nbsp;16:30',
+                content:'笔记测试1',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:14,
+                date: '2017-4-8&nbsp;16:54',
+                content:'笔记测试2',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:25,
+                date: '2017-4-8&nbsp;13:20',
+                content:'笔记测试3',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:36,
+                date: '2017-4-8&nbsp;15:15',
+                content:'笔记测试4',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:48,
+                date: '2017-4-8&nbsp;16:30',
+                content:'笔记测试5',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:12,
+                date: '2017-4-8&nbsp;16:30',
+                content:'笔记测试1',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:14,
+                date: '2017-4-8&nbsp;16:54',
+                content:'笔记测试2',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:25,
+                date: '2017-4-8&nbsp;13:20',
+                content:'笔记测试3',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:36,
+                date: '2017-4-8&nbsp;15:15',
+                content:'笔记测试4',
+                img: user.img,
+                name:user.realname
+            },
+            {
+                videotime:48,
+                date: '2017-4-8&nbsp;16:30',
+                content:'这是结尾',
+                img: user.img,
+                name:user.realname
+            }]
+
+            localStorage.setItem('USER',JSON.stringify(obj[name]));
+            localStorage.setItem('dataComments',JSON.stringify(comments))
+            localStorage.setItem('dataNotes',JSON.stringify(notes))
+            window.location.href="index.html"
         }
+       
     }
        
     </script>

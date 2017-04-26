@@ -1,5 +1,10 @@
+html {
+  height: 100%;
+}
 body {
   background-color: #f6f6f6;
+  width: 100%;
+  height: 100%;
 }
 header {
   padding: 11px 0;
@@ -73,6 +78,8 @@ article section.course-detail .course-introdution p.about-news span {
 }
 article section.course-detail .course-introdution p.begintime span {
   color: #d61616;
+  font-weight: bold;
+  font-size: 16px;
 }
 article section.course-detail .course-introdution .enterbtn {
   min-width: 600px;
@@ -100,7 +107,7 @@ article section.course-detail .course-introdution .enterbtn a.unactive {
 article section.course-detail .course-introdution .enterbtn a.unactive.unactive:hover {
   background-color: #3a3e4a;
 }
-article section.course-detail .course-introdution .enterbtn i {
+article section.course-detail .course-introdution .enterbtn span {
   color: #d61616;
   font-size: 14px;
 }
@@ -127,53 +134,63 @@ article section.something-about-video .columns {
           box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 article section.something-about-video .columns .tab-name {
-  padding-left: 13px;
+  padding-left: 20px;
   color: #333;
   font-size: 18px;
   line-height: 60px;
   border-bottom: 1px solid #ccc;
 }
 article section.something-about-video #comments,
-article section.something-about-video #notes {
+article section.something-about-video #notes,
+article section.something-about-video #upload {
   display: none;
   background-color: #fff;
   font-size: 12px;
   padding: 13px 23px 20px 13px;
-  min-height: 360px;
+  min-height: 700px;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 article section.something-about-video #comments .comments-item,
-article section.something-about-video #notes .comments-item {
+article section.something-about-video #notes .comments-item,
+article section.something-about-video #upload .comments-item {
   padding-bottom: 20px;
   border-bottom: 1px solid #ccc;
   margin-bottom: 15px;
 }
 article section.something-about-video #comments .avatar,
-article section.something-about-video #notes .avatar {
+article section.something-about-video #notes .avatar,
+article section.something-about-video #upload .avatar {
   width: 50px;
   height: 50px;
   float: left;
 }
 article section.something-about-video #comments .comments-content,
-article section.something-about-video #notes .comments-content {
+article section.something-about-video #notes .comments-content,
+article section.something-about-video #upload .comments-content {
   margin-left: 70px;
 }
 article section.something-about-video #comments .comments-content p:first-child,
-article section.something-about-video #notes .comments-content p:first-child {
+article section.something-about-video #notes .comments-content p:first-child,
+article section.something-about-video #upload .comments-content p:first-child {
   margin-bottom: 14px;
 }
 article section.something-about-video #comments .comments-content p .username,
-article section.something-about-video #notes .comments-content p .username {
+article section.something-about-video #notes .comments-content p .username,
+article section.something-about-video #upload .comments-content p .username {
   color: #2389cb;
 }
 article section.something-about-video #comments .comments-content p .play-time,
-article section.something-about-video #notes .comments-content p .play-time {
+article section.something-about-video #notes .comments-content p .play-time,
+article section.something-about-video #upload .comments-content p .play-time {
   float: right;
   border: 1px solid #e9e9e9;
   display: inline-block;
   height: 20px;
 }
 article section.something-about-video #comments .comments-content p .play-time .icon,
-article section.something-about-video #notes .comments-content p .play-time .icon {
+article section.something-about-video #notes .comments-content p .play-time .icon,
+article section.something-about-video #upload .comments-content p .play-time .icon {
   width: 24px;
   display: inline-block;
   height: 20px;
@@ -181,7 +198,8 @@ article section.something-about-video #notes .comments-content p .play-time .ico
   line-height: 20px;
 }
 article section.something-about-video #comments .comments-content p .play-time .current,
-article section.something-about-video #notes .comments-content p .play-time .current {
+article section.something-about-video #notes .comments-content p .play-time .current,
+article section.something-about-video #upload .comments-content p .play-time .current {
   display: inline-block;
   width: 60px;
   height: 20px;
@@ -191,28 +209,37 @@ article section.something-about-video #notes .comments-content p .play-time .cur
   vertical-align: top;
 }
 article section.something-about-video #comments .comments-content p.operation,
-article section.something-about-video #notes .comments-content p.operation {
+article section.something-about-video #notes .comments-content p.operation,
+article section.something-about-video #upload .comments-content p.operation {
   color: #999;
   margin-top: 10px;
 }
 article section.something-about-video #comments .comments-content p.operation .do,
-article section.something-about-video #notes .comments-content p.operation .do {
+article section.something-about-video #notes .comments-content p.operation .do,
+article section.something-about-video #upload .comments-content p.operation .do {
   float: right;
 }
 article section.something-about-video #comments .comments-content p.operation .do i,
-article section.something-about-video #notes .comments-content p.operation .do i {
+article section.something-about-video #notes .comments-content p.operation .do i,
+article section.something-about-video #upload .comments-content p.operation .do i {
   border: none;
   font-size: 12px;
   line-height: 22px;
   text-align: right;
   width: 86px;
   display: inline-block;
+  cursor: pointer;
+}
+article section.something-about-video #comments .comments-content p.operation .do i:hover,
+article section.something-about-video #notes .comments-content p.operation .do i:hover,
+article section.something-about-video #upload .comments-content p.operation .do i:hover {
+  color: #2389cb;
 }
 article section.something-about-video #members {
   padding: 20px 0px 30px 0px;
   background-color: #fff;
   font-size: 0px;
-  min-height: 360px;
+  min-height: 700px;
 }
 article section.something-about-video #members li {
   width: 80px;
@@ -233,4 +260,184 @@ article section.something-about-video #members li span {
 }
 article section.something-about-video #notes {
   display: none;
+}
+article section.something-about-video #upload {
+  padding: 0;
+}
+article section.something-about-video #upload .uploadfile {
+  padding: 20px;
+}
+article section.something-about-video #upload .uploadfile span {
+  height: 50px;
+  display: inline-block;
+  width: 110px;
+  line-height: 50px;
+  color: #fff;
+  background-color: #2389cb;
+  font-size: 30px;
+  text-align: center;
+  position: relative;
+}
+article section.something-about-video #upload .uploadfile span i {
+  font-size: 14px;
+  font-style: normal;
+  vertical-align: middle;
+}
+article section.something-about-video #upload .uploadfile input {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+article section.something-about-video #upload .kind {
+  padding: 0 20px;
+  font-size: 0px;
+  background-color: #f6f6f6;
+}
+article section.something-about-video #upload .kind span {
+  display: inline-block;
+  color: #333;
+  font-size: 14px;
+  line-height: 34px;
+  height: 34px;
+}
+article section.something-about-video #upload .kind span:nth-child(1) {
+  width: 304px;
+}
+article section.something-about-video #upload .kind span:nth-child(2) {
+  width: 340px;
+}
+article section.something-about-video #upload .kind span:nth-child(3) {
+  width: 180px;
+}
+article section.something-about-video #upload .file-mes {
+  padding: 17px 20px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 0;
+  height: 84px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+article section.something-about-video #upload .file-mes span {
+  font-size: 14px;
+  color: #999;
+}
+article section.something-about-video #upload .file-mes span:nth-child(1) {
+  font-size: 50px;
+  width: 304px;
+  color: #2389cb;
+  float: left;
+}
+article section.something-about-video #upload .file-mes span:nth-child(1) i {
+  font-size: 14px;
+  line-: ;
+  height: 50px;
+  font-style: normal;
+  vertical-align: middle;
+  color: #333;
+}
+article section.something-about-video #upload .file-mes span.twooption {
+  width: 340px;
+  display: inline-block;
+}
+article section.something-about-video #upload .file-mes span.twooption span.progress {
+  border: 1px solid #2389cb;
+  width: 140px;
+  height: 14px;
+  display: inline-block;
+  margin-top: 18px;
+}
+article section.something-about-video #upload .file-mes span.twooption span.progress .percent {
+  background-color: #2389cb;
+  width: 20px;
+  height: 14px;
+  display: inline-block;
+}
+article section.something-about-video #upload .file-mes span.twooption .remain {
+  margin-left: 10px;
+}
+article section.something-about-video #upload .file-mes span.size {
+  width: 180px;
+  display: inline-block;
+}
+article section.something-about-video #upload .file-mes span.op {
+  float: right;
+}
+article section.something-about-video #upload .file-mes span.op .icon {
+  width: 58px;
+  hegiht: 50px;
+  word-spacing: 10px;
+  cursor: pointer;
+}
+article section.something-about-video #upload .file-mes span.op .icon:hover,
+article section.something-about-video #upload .file-mes span.op .icon.active {
+  color: #2389cb;
+}
+article section.something-about-video #upload .file-mes span.op .download {
+  margin-right: 20px;
+}
+article section.something-about-video #upload .file-mes span.op .delete {
+  margin-right: 50px;
+}
+#modal {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+}
+#modal .edit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 880px;
+  height: 428px;
+}
+#modal .edit h1 {
+  font-weight: normal;
+  padding-left: 20px;
+  font-size: 18px;
+  line-height: 50px;
+  border-bottom: 1px solid #e8e8e8;
+  height: 50px;
+  color: #333;
+  margin-bottom: 40px;
+}
+#modal .edit textarea {
+  width: 840px;
+  height: 236px;
+  resize: none;
+  background-color: #fafafa;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+#modal .edit div {
+  float: right;
+}
+#modal .edit div span {
+  font-size: 12px;
+  line-height: 30px;
+  height: 30px;
+  width: 56px;
+  text-align: center;
+  background-color: #fff;
+  color: #333;
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+}
+#modal .edit div span:hover,
+#modal .edit div span.active {
+  background-color: #2389cb;
+  color: #fff;
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width;initial-scale=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="renderer" content="webkit">
     <meta http-equiv="x-ua-compatible" content="IE=Edge"> 
 	<title>观看视频页</title>
@@ -42,48 +42,24 @@
 					<p>学科 : <span class="subject">数学</span>讲师 : <span class="teacher">金鑫</span></p>
 				</div>
 				<div class="custom-nav">
-					<a href="#custom-body-comments" class="comments icon iconfont icon-iconfontedit active">讨论</a>
-					<a href="#custom-body-notes" class="notes icon iconfont icon-bianji-copy">笔记</a>
+					<!-- <a href="#custom-body-comments" class="comments icon iconfont icon-iconfontedit active">讨论</a> -->
+					<a href="#custom-body-notes" class="notes icon iconfont icon-bianji-copy ">笔记</a>
 				</div>
 				<div class="custom-body">
-					<div id="custom-body-comments">
+					<!-- <div id="custom-body-comments">
 						<div class="send-mes">
 							<textarea name="" id=""></textarea>
 							<span id="send-mime-comment">发布讨论</span>
 						</div>
 						<div class="scroll-message">
-							<!-- <div  class ="commentsimilar">
-								<div class="avatar">
-									<img src="image/avatar1.png" alt="">
-									<span class="username">金鑫</span>
-								</div>
-								<div class="comments-content">
-									<p>这个是讨论讨论</p>
-									<p class="operation">
-										<span class="sendtime">2017-12-7&nbsp;15:30</span>
-									</p> 
-								</div>  
-							</div>  -->
 						</div>
-					</div>
+					</div> -->
 					<div id="custom-body-notes">
 						<div class="send-mes">
 							<textarea name="" ></textarea>
 							<span id="send-mime-notes">发布笔记</span>
 						</div>
 						<div class="scroll-message">
-							<!-- <div  class="commentsimilar">
-								<div class="avatar">
-									<img src="image/avatar1.png" alt="">
-									<span class="username">金鑫</span>
-								</div>
-								<div class="comments-content">
-									<p>这个是笔记</p>
-									<p class="operation">
-										<span class="sendtime">2017-12-7&nbsp;15:30</span>
-									</p> 
-								</div>  
-							</div>  -->
 						</div>
 					</div>
 				</div>
@@ -98,8 +74,9 @@
 		<script>
 			var myplayer = videojs('my-video')
 			var CUSTOMWIDTH = 228;
-			var comments = new mycommonEvent.Tab($('.custom-nav a:eq(0)'))
-			var notes = new mycommonEvent.Tab($('.custom-nav a:eq(1)'), renderNotes)
+			// var comments = new mycommonEvent.Tab($('.custom-nav a:eq(0)'))
+			var notes = new mycommonEvent.Tab($('.custom-nav a:eq(0)'), renderNotes)
+			$('.custom-nav a:eq(0)').trigger('click');
 			var staticHeight = $('.custom-nav').height()+$('.custom-header').height()+$('.send-mes').height();
 			var timer
 			//发布绑定事件
@@ -110,8 +87,8 @@
 					return false
 				}
 				var data = {
-					name:'金鑫',
-					img:'image/avatar1.png',
+					name:user.realname,
+					img:user.img,
 					content:$textarea.val(),
 					date: mycommonEvent.formdate()
 				}
@@ -123,8 +100,6 @@
 			//视频准备好的事件
 			myplayer.ready(function(){
 				var $myvideo = $('#my-video')
-				console.log('ready')
-				console.log($('.vjs-fullscreen-control'));
 				$myvideo[0].style.display="block";
 				$myvideo.find('video')[0].style.display='block';
 				function changeVideoSize(){
@@ -133,10 +108,13 @@
 					console.log('resize',w)
 					$('.scroll-message').height(h -  staticHeight)
 					var CUSTOMWIDTH = 228;
+					$('.videoBox').width(w - CUSTOMWIDTH)
 					if(w > 528) {
 						var videoW = Math.round(w - CUSTOMWIDTH)
-						var rate = (videoW / 1280).toFixed(2); 
-						 $myvideo.width(videoW);
+						var rate1 = (videoW / 1280).toFixed(2); 
+						var rate2 = (h / 720).toFixed(2)
+						var rate = rate1 > rate2 ? rate2 : rate1
+						 $myvideo.width(1280*rate);
 						 $myvideo.height(Math.round(720 * rate))
 						 console.log(rate)
 						 console.log($myvideo.width())
@@ -145,20 +123,32 @@
 				}
 				//让视频文件自适应屏幕尺寸
 				changeVideoSize();
+
 				$(window).on('resize',changeVideoSize);
 				//讨论功能和笔记功能
 				
-				myplayer.on('play',function(){
-					timer = setInterval(function(){
-						console.log('play')
-						console.log(Math.floor(myplayer.currentTime()))
-						sortByTimeAndSendToDialog($('#send-mime-comment'),dataComments,Math.floor(myplayer.currentTime()))
-					},1000)
-				})
-				myplayer.on('pause', function() {
-					clearInterval(timer)
-				})
-
+				// myplayer.on('play',function(){
+				// 	timer = setInterval(function(){
+				// 		console.log('play')
+				// 		console.log(Math.floor(myplayer.currentTime()))
+				// 		sortByTimeAndSendToDialog($('#send-mime-comment'),dataComments,Math.floor(myplayer.currentTime()))
+				// 	},1000)
+				// })
+				// myplayer.on('pause', function() {
+				// 	clearInterval(timer)
+				// })
+				//如果视频要求跳转到特定的播放时间
+				function getCurrentTime(){
+					var search = location.search.slice(1).split('=')
+					var key = search[0]
+					var value = decodeURIComponent(search[1])
+					console.log(value)
+					if(key === 'currentTime') {
+						myplayer.currentTime(value)
+						myplayer.play()
+					}
+				}
+				getCurrentTime()
 			})
 			//增加到对话
 			function addToDialog (dom,data) {
@@ -174,28 +164,30 @@
 								'</p>' +
 							'</div> ' +
 						'</div> ')
+				// dataNotes.push(data)
+				// localStorage.setItem('dataNotes',JSON.stringify(dataNotes))
 				var $parent = dom.parent().siblings()
-				$parent.append($column)	
+				$parent.prepend($column)	
 				var columnHeight = $column.height()
 				// console.log('height',columnHeight)
 				// 这里的20是margin
-				$parent.scrollTop($parent.scrollTop() + columnHeight + 20)
+				// $parent.scrollTop($parent.scrollTop() + columnHeight + 20)
 			}
 
 			//自动添加评论到页面
-			function sortByTimeAndSendToDialog(btn,data,currentTime) {
-				console.log(btn,data,currentTime)
-				for(var i = 0; i < data.length; i++){
-					if(data[i].videotime === currentTime) {
-						  data.splice(i,1)
-						  console.log(data.length)
-						  addToDialog($(btn),data[i])
-					}
-				}
-			}
+			// function sortByTimeAndSendToDialog(btn,data,currentTime) {
+			// 	console.log(btn,data,currentTime)
+			// 	for(var i = 0; i < data.length; i++){
+			// 		if(data[i].videotime === currentTime) {
+			// 			  data.splice(i,1)
+			// 			  console.log(data.length)
+			// 			  addToDialog($(btn),data[i])
+			// 		}
+			// 	}
+			// }
 			
 			function renderNotes(){
-				console.log(dataNotes)
+				// console.log(dataNotes)
 				for(var i = 0; i < dataNotes.length; i++ ) {
 					addToDialog($('#send-mime-notes'), dataNotes[i])
 				}

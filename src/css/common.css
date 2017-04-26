@@ -2,6 +2,9 @@ body {
   font-family: 'Microsoft yahei' !important;
   background-color: #f6f6f6;
 }
+i {
+  font-style: normal;
+}
 @blue =#2389cb;
 header {
   width: 1200px;
@@ -29,8 +32,8 @@ header .loginer a {
   font-size: 14px;
 }
 header .loginer span.avatar {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   display: inline-block;
   border-radius: 50%;
   overflow: hidden;
@@ -54,6 +57,9 @@ header .items li a {
   width: 100%;
   height: 100%;
 }
+header .items li a:hover {
+  color: #2389cb;
+}
 header .items li .babel {
   position: absolute;
   display: inline-block;
@@ -69,8 +75,7 @@ header .items li .babel {
 .searchBar {
   width: 590px;
   height: 38px;
-  border-top: 1px solid #2389cb;
-  border-bottom: 1px solid #2389cb;
+  border: 1px solid #2389cb;
   color: #666;
   margin: auto;
   margin-bottom: 13px;

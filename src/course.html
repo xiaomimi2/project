@@ -9,11 +9,17 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/course.css">
     <title>课程页</title>
+    <style>
+        .self-information{
+            background: #dde7d0;
+
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <a class="logo" href="index.html">云视教研管理平台</a>
+            <a class="logo" href="index.html">云视网络教研管理平台</a>
             <div class="loginer">
                 <a href="enter.html">注销</a>
                 <a href="">金鑫</a>
@@ -21,7 +27,7 @@
             </div>
             <ul class="items">
                 <li><a href="myCourse.html">我的课堂</a><span class="babel">1</span></li>  
-                <li><a href="myCourse.html#history">历史课堂</a><!-- <span class="babel">1</span> --></li>  
+                <li><a href="history.html">历史课堂</a><!-- <span class="babel">1</span> --></li>  
             </ul>
             <div class="searchBar">
                 <div class="select">
@@ -46,9 +52,9 @@
                     听课时间&nbsp;:&nbsp;<span class="datepart1">2017-6-18</span>&nbsp;&nbsp;&nbsp;<span class="datepart2">15:00</span>
                 </p>
                 <div class="enterbtn">
-                    <a class="tovideo" href="video.html" id="preview">备课预览</a>
-                    <a class="beginclass" id="beginclass">开始听课</a>
-                    <i>(已开始)</i>
+                    <a class="tovideo" href="video.html" target="_blank" id="preview">备课预览</a>
+                    <a class="beginclass" id="beginclass">进入会议</a>
+                    <!-- <span>(已开始)</span> -->
                 </div>
             </div>
         </section>
@@ -57,9 +63,10 @@
                 <a href="#members" class="active">开会成员</a>
                 <a href="#notes">笔记</a>
                 <a href="#comments">讨论</a>
+                <a href="#upload">会议总结</a>
             </div>
             <div class="columns" id="waterfall-column">
-                <!-- <div class="tab-name">笔记</div> -->
+                <!-- <p class="tab-name">开会成员</p> -->
                 <div id ="comments">
                    <!--  <div class="comments-item">   
                         <div class="avatar">
@@ -104,14 +111,54 @@
                     </div> -->
                     
                 </div>
+                <div id="upload">
+                    <div class="uploadfile">
+                        <span class="icon iconfont icon-shangchuan"><i>&nbsp;上传</i><input type="file" id="file"></span>
+                    </div>
+                    <div class="kind">
+                        <span class="type">文件</span>
+                        <span class="updatetime">更新时间</span>
+                        <span>大小</span>
+                        <span>上传人</span>
+                    </div>
+                    <!-- <div class="file-mes">
+                        <span class="icon iconfont icon-word1"><i>某某的总结</i></span>
+                        <span class="twooption">
+                            <span class="progress">
+                                <span class="percent"></span>
+                                
+                            </span>
+                            <i class="remain">00:00:00</i>
+                        </span>
+                        <span class="size">881kb</span>
+                        <span class="admin">金鑫</span>
+                        <span class="op">
+                            <i class="delete icon-shanchu icon iconfont">删除</i>
+                            <i class="download icon-xiazai icon iconfont">下载</i>
+                        </span>
+                    </div>
+                     <div class="file-mes">
+                        <span class="icon iconfont icon-word1"><i>某某的总结</i></span>
+                        <span class="twooption">2017-12-7&nbsp;12:15</span>
+                        <span class="size">881kb</span>
+                        <span class="admin">金鑫</span>
+                        <span class="op">
+                            <i class="delete icon-shanchu icon iconfont">删除</i>
+                            <i class="download icon-xiazai icon iconfont">下载</i>
+                        </span>
+                    </div> -->
+                </div>
             </div>
         </section>
     </article>
+   
     <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/common.js"></script>
     <script>
         var users = JSON.parse(localStorage.getItem('USER'))
         var members = JSON.parse(localStorage.getItem('INVITED_PEOPLE'))
+        //修改评论弹出框
+        var modal 
         
          //初始化会议人员
             var len = 0
@@ -123,9 +170,10 @@
             }
             
             //切换事件
-            var comments = new mycommonEvent.Tab($('.tab a:eq(2)'),renderNotes(dataComments,'#comments'))
+            var comments = new mycommonEvent.Tab($('.tab a:eq(2)'),renderMoments(dataComments,'#comments'))
             var notes = new mycommonEvent.Tab($('.tab a:eq(1)'),renderNotes(dataNotes,'#notes'))
             var members = new mycommonEvent.Tab($('.tab a:eq(0)'),renderMembers(members,'#members'))
+            var upload = new mycommonEvent.Tab($('.tab a:eq(3)'))
             $('.tab a:eq(0)').trigger('click');
 
             if(location.search){
@@ -134,21 +182,26 @@
             }
             //历史
             if(isHistory) {
-                $('#beginclass').addClass('unactive')
-                    .off('click')
-                    .siblings('i').remove()
-
+                $('#beginclass')
+                .siblings('a')
+                .text('已结束')
+                .removeAttr('href')
+                .removeAttr('target')
+                .css('backgroundColor','#999')
+                .end()
+                .siblings('span').remove()
+                .end()
+                .remove();
+                //有上传文件功能
             }
             //直播
             if(isLive) {    
-                $('.enterbtn').html('<a class="beginclass" id="beginclass">开始听课</a>')
+                $('.enterbtn').html('<a class="beginclass" id="beginclass">进入会议</a>')
                 $('.image').css('backgroundImage','url("image/直播.png")')
             }
 
-            //删除按钮 这个需要在每次渲染完毕后添加事件
-            $('.icon-shanchu').one('click',function(){
-                $(this).parents('.comments-item').remove();
-            })
+           
+           
 
             //这里只给笔记做了瀑布流的效果
             $(window).on('scroll',renderNotes(dataNotes,'#notes'))
@@ -165,8 +218,24 @@
                 window.location.href="search.html";
             })
 
-       
-        
+            //上传按钮上传文件
+            $('#file').on('change', function(){
+                if(this.files[0]) {
+                    uploadFile(this.files[0],users,$('#upload'))
+                }
+            })
+            
+            //上传的文件删除
+            $('#upload').on('click',function(ev){
+                if(/delete/.test(ev.target.className)){
+                    var result = confirm('确定删除文件')
+                    if(result) return $(ev.target).parents('.file-mes').remove();
+                }
+                if(/download/.test(ev.target.className)) {
+                    var a = $(ev.target).addClass('active').parents('.file-mes').find('span:eq(0)').text()
+                    console.log(a)
+                }
+            })
         
         //开会成员
         
@@ -194,12 +263,13 @@
                     if(index == 0 || mycommonEvent.waterfallOfNotFIxedHeight($(id))) {
                         //只有瀑布流加载的情况下index加
                         index = i
-                        var div = $(' <div class="comments-item">'+   
+                        console.log(data[i].date)
+                        var $div = $(' <div class="comments-item">'+   
                                    '<div class="avatar">'+
                                         '<img src="'+data[i].img+'" alt="">'+
                                     '</div>'+
                                     '<div class="comments-content">'+
-                                       '<p><span class="username">'+data[i].name+'</span><span class="play-time"><i class="icon iconfont icon-bofang"></i><i class="current">'+mycommonEvent.formatVideoTime(data[i].videotime)+'</i></span></p>'+
+                                       '<p><span class="username">'+data[i].name+'</span><a class="play-time" href="video.html?currentTime='+ data[i].videotime +'" target="_blank"><i class="icon iconfont icon-bofang"></i><i class="current">'+mycommonEvent.formatVideoTime(data[i].videotime)+'</i></a></p>'+
                                        '<p>'+ data[i].content +'</p>'+
                                        '<p class="operation">'+
                                            '<span class="sendtime">'+data[i].date+'</span>'+
@@ -210,7 +280,72 @@
                                        '</p>'+
                                     '</div>'+  
                                 '</div>')
-                        $(id).append(div)
+                        //删除按钮
+                         $div.find('.icon-shanchu').on('click',function(){
+                            var del = confirm('确定要删除')
+                            if(del) {
+                                $(this).parents('.comments-item').remove();
+                            }
+                        })
+                         //编辑按钮
+                        $div.find('.icon-bianji-copy').on('click',function(){
+                             if(!modal) {
+                                 modal = createModal(this)
+                             }
+                             modalActions(modal,this)
+                        })
+                        $(id).append($div)
+                    } else {
+                        break;
+                    }
+                }
+                
+            }
+        }
+
+        //渲染评论页
+        function renderMoments(data,id) {
+            var index = 0
+            return function(){
+                console.log(mycommonEvent.waterfallOfNotFIxedHeight($(id)))
+                console.log(index)
+                //index到了data数据的总长就可以了
+                if(index === data.length - 1) return
+                for(var i = index + 1; i < data.length; i++ ){
+                    if(index == 0 || mycommonEvent.waterfallOfNotFIxedHeight($(id))) {
+                        //只有瀑布流加载的情况下index加
+                        index = i
+                        var $div = $(' <div class="comments-item">'+   
+                                   '<div class="avatar">'+
+                                        '<img src="'+data[i].img+'" alt="">'+
+                                    '</div>'+
+                                    '<div class="comments-content">'+
+                                       '<p><span class="username">'+data[i].name+'</span></p>'+
+                                       '<p>'+ data[i].content +'</p>'+
+                                       '<p class="operation">'+
+                                           '<span class="sendtime">'+data[i].date+'</span>'+
+                                       '</p>'+
+                                    '</div>'+  
+                                '</div>')
+                        if(user.realname === data[i].name){
+                            $div.find('.operation').append('<span class="do">'+
+                                               '<i class="icon iconfont icon-bianji-copy">编辑</i>'+
+                                               '<i class="icon iconfont icon-shanchu">删除</i>'+
+                                           '</span>')
+                        }
+                         $div.find('.icon-shanchu').on('click',function(){
+                            var del = confirm('确定要删除')
+                            if(del) {
+                                $(this).parents('.comments-item').remove();
+                            }
+                        })
+                        $div.find('.icon-bianji-copy').on('click',function(){
+                            if(!modal) {
+                                modal = createModal(this)
+                            }
+                            modalActions(modal,this)
+                        })
+                        $(id).append($div)
                     } else {
                         break;
                     }
@@ -219,6 +354,69 @@
             }
         }
         
+        //编辑评论
+        // <div id="modal">
+    //     <div class="edit">
+    //         <h1>编辑笔记</h1>
+    //         <textarea name="" id="" cols="30" rows="10"></textarea>
+    //         <div><span class="cancel">取消</span><span class="makesure active">保存</span></div>
+    //     </div>
+    // </div>
+        
+    function createModal(obj) {
+            var div = document.createElement('div')
+            div.id = 'modal'
+            div.innerHTML = '<div class="edit"><h1>编辑笔记</h1><textarea name="" id="" cols="30" rows="10" ></textarea><div><span class="cancel">取消</span><span class="makesure active">保存</span></div></div>'
+            document.body.appendChild(div)
+            return $(div)
+     }
+
+     function modalActions(div,obj) {
+        $(div).css({'top':$(window).scrollTop()})
+               .find('textarea').val($(obj).parents('p').prev('p').text())
+               .end()
+               .fadeIn()
+        $(div).find('.makesure').on('click', function (){
+            var value = $(this).parent().siblings('textarea').val()
+            $(obj).parents('p').prev('p').text(value)
+            $(div).fadeOut()
+        })
+        $(div).find('.cancel').on('click', function (){
+            $(div).fadeOut()
+        })
+     }
+
+     //文件上传效果
+     function uploadFile(file,user,parent) {
+        console.log(file)
+       var $div = $(' <div class="file-mes">'+
+                        '<span class="icon iconfont icon-word1"><i>'+file.name+'</i></span>'+
+                        '<span class="twooption">'+
+                            '<span class="progress">'+
+                                '<span class="percent"></span>'+
+                            '</span>'+
+                            '<i class="remain">00:04:00</i>'+
+                        '</span>'+
+                        '<span class="size">'+Math.round(file.size/1024)+'kb</span>'+
+                        '<span class="admin">'+user.realname+'</span>'+
+                        '<span class="op">'+
+                            '<i class="delete icon-shanchu icon iconfont">删除</i>'+
+                            '<i class="download icon-xiazai icon iconfont">下载</i>'+
+                        '</span>'+
+                    '</div>')
+        var index = 1;
+        $(parent).append($div)
+        var timer = setInterval(function(){
+            index++
+            var width = parseInt($div.find('.percent').width())
+            $div.find('.percent').width(width+20 + 'px')
+            console.log(width)
+            if(index === 7) {
+                clearInterval(timer);
+                $div.find('.twooption').html(mycommonEvent.formdate())
+            }
+        },500)
+     }
 
 
     </script>

@@ -31,7 +31,7 @@ $(function(){
     $('#invite').on('click',function(){
         if(window.location.pathname === '/invite.html') {
             saveTolocalStorage('INVITED_PEOPLE',localStore.invites())
-            window.location.href = 'course.html';
+            window.location.href = 'myCourse.html';
         }else{
             saveTolocalStorage('INVITED_PEOPLE',localStore.invites())
             window.location.href = 'course.html?live=1'

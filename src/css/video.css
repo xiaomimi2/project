@@ -13,7 +13,7 @@ body {
 }
 .fullscreen .videoBox {
   width: 100%;
-  background-color: #67686d;
+  background-color: #000;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -33,7 +33,6 @@ body {
   cursor: pointer;
 }
 .fullscreen .videoBox #my-video {
-  float: left;
   margin: auto;
 }
 .fullscreen .custom {
@@ -73,7 +72,7 @@ body {
   padding: 6px 0px 6px 18px;
 }
 .fullscreen .custom .custom-nav a {
-  color: #333;
+  color: #fff;
   width: 62px;
   font-size: 12px;
   display: inline-block;
@@ -81,14 +80,7 @@ body {
   height: 20px;
   text-align: center;
   border-radius: 3px;
-}
-.fullscreen .custom .custom-nav a:hover,
-.fullscreen .custom .custom-nav a.active {
   background-color: #3a3e4a;
-  color: #fff;
-}
-.fullscreen .custom .custom-nav a.comments {
-  margin-right: 74px;
 }
 .fullscreen .custom .custom-body {
   background-color: #f5f7fa;
@@ -147,5 +139,5 @@ body {
   font-size: 10px;
 }
 .fullscreen .custom #custom-body-notes {
-  display: none;
+  display: block;
 }

@@ -15,9 +15,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-shanchu:before { content: "\e600";margin-right:10px }
+.icon-shanchu:before { content: "\e600"; }
 
-.icon-xiazai:before { content: "\e62a"; margin-right:10px}
+.icon-xiazai:before { content: "\e62a"; }
 
 .icon-iconfontedit:before { content: "\e61f"; }
 
@@ -31,7 +31,7 @@
 
 .icon-huanyipi:before { content: "\e70a"; }
 
-.icon-word1:before { content: "\e62e";margin-right:10px }
+.icon-word1:before { content: "\e62e"; }
 
 .icon-sousuo-sousuo:before { content: "\e614"; }
 

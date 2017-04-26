@@ -6,9 +6,7 @@ section.self-information {
   height: 143px;
   padding-top: 45px;
   overflow: hidden;
-  backgrouns: #2389cb;
-  background: -webkit-gradient(linear, 0 0, right 0, from(#2389cb), to(rgba(35, 137, 203, 0.7)));
-  background: -moz-linear-gradient(left, #2389cb, rgba(35, 137, 203, 0.7));
+  background: #57cb97;
 }
 section.self-information .wrap {
   height: 98px;
@@ -32,6 +30,7 @@ section.self-information .wrap .content {
 section.self-information .wrap .content .guest {
   font-szie: 20px;
   line-height: 56px;
+  font-weight: bold;
 }
 section.self-information .wrap .content .have-lessons {
   font-size: 14px;
@@ -125,4 +124,10 @@ article .wrap .course .body .meetingbtn {
   margin-top: 20px;
   margin-bottom: 18px;
   color: #2389cb;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+article .wrap .course .body .meetingbtn:hover {
+  background-color: #2389cb;
+  color: #fff;
 }
