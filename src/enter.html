@@ -21,9 +21,10 @@
             <p>
                 <label for="username">用户：</label>
                 <select id="videouser">
-                  <option value ="张三">张三</option>
-                  <option value ="李四">李四</option>
-                  <option value="王五">王五</option>
+                  <option value ="张老师">张老师</option>
+                  <option value ="王老师">王老师</option>
+                  <option value="教研室">教研室</option>
+                   <option value="课堂">课堂接入</option>
                 </select>
             </p>
             <p class="p-btn">
@@ -55,26 +56,33 @@
         
 
         var obj = {
-            '张三':{
-                videouser:'jyt001',      
-                videopwd: 'jyt001',
-                roomid: '4472',
-                realname:'张三',
+            '王老师':{
+                videouser:'jyt004',      
+                videopwd: 'jyt004',
+                roomid: '67',
+                realname:'王老师',
                 img:'image/user1.jpg'
             },
-            '李四': {
+            '教研室': {
                 videouser:'jyt002',
                 videopwd: 'jyt002',
-                roomid: '4472',
-                realname:'李四',
+                roomid: '67',
+                realname:'教研室',
                 img:'image/user2.jpg'
             },
-            '王五': {
+            '张老师': {
                 videouser:'jyt003',
                 videopwd: 'jyt003',
-                roomid: '4472',
-                realname:'王五',
+                roomid: '67',
+                realname:'张老师',
                 img:'image/user3.jpg'
+            },
+            '课堂':{
+                videouser:'jyt001',
+                videopwd: 'jyt001',
+                roomid: '67',
+                realname:'课堂',
+                img:'image/user4.jpg'
             }
         }
         localStorage.removeItem('USER')
@@ -85,6 +93,7 @@
         
         btn.onclick = function(){
             var name = admin.value;
+            console.log(name)
             var user = obj[name]
             var comments = [{"name":"李老师","date":"20170421174252","content":"这一部分讲的很好！","img":'image/avatar.png'},
             {"name":"张三","date":"2017-04-24&nbsp;16:19:14","content":"这一部分讲的很好！这一部分讲的很好！","img":"image/user1.jpg"},

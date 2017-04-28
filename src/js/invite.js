@@ -84,5 +84,8 @@ $(function(){
         }
 
     })()
+    if(document.getElementById('picktime')) {
+        $('#picktime').datetimebox();
+    }
 
 })

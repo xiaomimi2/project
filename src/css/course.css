@@ -21,10 +21,10 @@ header .container {
   margin: 0 auto;
 }
 header .logo {
-  font-size: 18px;
+  font-size: 20px;
   color: #fff;
-  background: url('../image/logo-white.png') 0 0 no-repeat;
-  padding-left: 60px;
+  background: url('../image/logo-white.png') 0 7px no-repeat;
+  padding-left: 150px;
   font-weight: normal;
 }
 header .loginer a {

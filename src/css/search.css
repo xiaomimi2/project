@@ -150,6 +150,33 @@ article.choose-teacher section .choosed-teacher li span.del {
 article.choose-teacher section .choosed-teacher li:hover span.del {
   display: block;
 }
+article.choose-teacher section .meetingTime {
+  position: absolute;
+  left: 24px;
+  bottom: 320px;
+}
+article.choose-teacher section .meetingTime h1 {
+  line-height: 20px;
+}
+article.choose-teacher section .meetingTime input {
+  width: 212px;
+  padding-left: 10px;
+  height: 30px;
+  line-height: 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+article.choose-teacher section .meetingTime .combo {
+  width: 212px!important;
+  height: 30px!important;
+}
+article.choose-teacher section .meetingTime .combo-text {
+  width: 190px!important;
+  height: 30px!important;
+}
+article.choose-teacher section .meetingTime .combo-arrow {
+  height: 30px!important;
+}
 article.choose-teacher section .invite {
   display: block;
   width: 140px;

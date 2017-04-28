@@ -16,11 +16,11 @@ header {
 header .logo {
   float: left;
   display: block;
-  font-size: 30px;
+  font-size: 26px;
   color: #333;
-  background: url('../image/yunshi-logo.png') 0 0 no-repeat;
-  background-size: 50px 30px;
-  padding-left: 50px;
+  background: url('../image/yunshi-logo.png') 0 3px no-repeat;
+  background-size: 135px 32px;
+  padding-left: 152px;
   font-weight: bold;
 }
 header .loginer {
@@ -98,7 +98,7 @@ header .items li .babel {
 .searchBar .select ul.choose-list {
   position: absolute;
   left: -303px;
-  top: 43px;
+  top: 40px;
   background-color: #fff;
   width: 224px;
   height: 196px;
@@ -106,6 +106,7 @@ header .items li .babel {
           box-sizing: border-box;
   padding: 0 14px;
   background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
 }
 .searchBar .select ul.choose-list li {
   display: block;
@@ -140,7 +141,8 @@ header .items li .babel {
   font-size: 14px;
   line-height: 20px;
 }
-.searchBar .btn {
+.searchBar .btn,
+.searchBar .btn-search {
   float: right;
   padding: 9px 0;
   height: 20px;
@@ -149,6 +151,8 @@ header .items li .babel {
   width: 68px;
   text-align: center;
   line-height: 20px;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 /*五个课程排列表*/
 .wrap {

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="css/course.css">
+    <link rel="stylesheet" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" href="easyui/themes/icon.css">
     <style>
         #course-detail{
             margin-bottom:18px;
@@ -43,12 +45,12 @@
             </div>
             <div class="course-introdution">
                 <h1>苏州实验小学五年级</h1>
-                <p class="about-news">人员&nbsp;:&nbsp;<span class="people-num">5</span>学科&nbsp;:&nbsp;<span class="subject">数学</span>讲师&nbsp;:&nbsp;<span class="teacher">金鑫</span></p>
-                <p class="begintime">
-                    听课时间&nbsp;:&nbsp;<span class="datepart1">2017-6-18</span>&nbsp;&nbsp;&nbsp;<span class="datepart2">15:00</span>
-                </p>
+                <p class="about-news">学科&nbsp;&nbsp;<span class="subject">数学</span>讲师&nbsp;:&nbsp;<span class="teacher">金鑫</span></p>
+              <!--   <p class="begintime">
+                    研讨事件&nbsp;:&nbsp;<input type="">
+                </p> -->
                 <div class="enterbtn">
-                    <a class="tovideo" href="video.html" id="preview" target="_blank">预览</a>
+                    <a class="tovideo" href="video.html?preview=1" id="preview" target="_blank">预览</a>
                 </div>
             </div>
         </section>
@@ -84,10 +86,17 @@
                 <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li>
                 <li><img src="image/avatar1.png" alt=""><span>金鑫</span><span class="del">删除</span></li> -->
             </ul>
+            <div class="meetingTime">
+                <h1>开会时间</h1>
+                <input type="text"  id="picktime" class="easyui-datetimebox" >
+            </div>
+            
             <span class="invite" id="invite">邀请</span>
         </section>
     </article>
-    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="easyui/jquery.easyui.min.js"></script>
+    <script src="easyui/locale/easyui-lang-zh_CN.js"></script>
     <script src="js/common.js"></script>
     <script src="js/invite.js"></script>
 </body>

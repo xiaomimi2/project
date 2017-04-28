@@ -1,16 +1,22 @@
 nav .banner {
   width: 100%;
   margin-bottom: 24px;
-  background-color: #50d3e7;
+  background-color: #00a2e6;
 }
 nav .banner .imgbox {
-  width: 1200px;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   font-size: 0px;
 }
+nav .banner .imgbox img {
+  width: 100%;
+}
 body {
   background-color: #fff;
+}
+.carousel-indicators .active {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 article {
   width: 100%;

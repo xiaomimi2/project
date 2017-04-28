@@ -8,10 +8,11 @@
 	<title>观看视频页</title>
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/iconfont.css">
-	<link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
+	<link href="css/video-js.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/video.css">
+	<!-- <link rel="stylesheet" href="css/video.css"> -->
 	<!-- If you'd like to support IE8 -->
-	<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+	<script src="js/videojs-ie8.min.js"></script>
 	<style>
 		.video-js{
 			width:1200px;
@@ -27,9 +28,9 @@
 <body>
 	<div class="fullscreen">
 		<div class="videoBox">
-			<span class="back" onclick="history.back()">返回</span>
+			<!-- <span class="back" onclick="history.back()">返回</span> -->
 			<video id="my-video" class="video-js" controls preload="auto" data-setup="{}" style="display: none">
-				<source src="video/Honor.mp4" type='video/mp4'>
+				<source  type='video/mp4'>
 					<p class="vjs-no-js">
 						To view this video please enable JavaScript, and consider upgrading to a web browser that
 						<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -43,7 +44,7 @@
 				</div>
 				<div class="custom-nav">
 					<!-- <a href="#custom-body-comments" class="comments icon iconfont icon-iconfontedit active">讨论</a> -->
-					<a href="#custom-body-notes" class="notes icon iconfont icon-bianji-copy ">笔记</a>
+					<a href="#custom-body-notes" class="notes icon iconfont icon-bianji-copy">笔记</a>
 				</div>
 				<div class="custom-body">
 					<!-- <div id="custom-body-comments">
@@ -56,7 +57,8 @@
 					</div> -->
 					<div id="custom-body-notes">
 						<div class="send-mes">
-							<textarea name="" ></textarea>
+							<textarea></textarea>
+							<span id="videoTransfer">语音识别</span>
 							<span id="send-mime-notes">发布笔记</span>
 						</div>
 						<div class="scroll-message">
@@ -65,16 +67,75 @@
 				</div>
 				
 			</div>
+			<div class="playlist">
+				<h1>播放列表</h1>
+				<ul>
+					<!-- <li data-index="0" class="active">视频1</li>
+					<li data-index="1">视频2</li>
+					<li data-index="2">视频3</li>
+					<li data-index="3">视频4</li> -->
+				</ul>
+			</div>
 		</div>
 
 
-		<script src="http://vjs.zencdn.net/5.8.8/video.js"></script>  
-		<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/video.js"></script>  
+		<script src="js/jquery.min.js"></script>
 		<script src="js/common.js"></script>
 		<script>
 			var myplayer = videojs('my-video')
 			var CUSTOMWIDTH = 228;
-			// var comments = new mycommonEvent.Tab($('.custom-nav a:eq(0)'))
+			// var data = ['./video/09a165e4-8ede-46bd-bddd-3be663de18ae.mp4','./video/0b716178-8226-4175-b2ca-b114b9103e7b.mp4','./video/7d76513b-ec23-4733-9e45-3da8f07fb390.mp4','./video/97b78ad4-83e8-4954-996c-a7922b4147b6.mp4']
+			//这是直接进入回看页进行播放视频
+			var arr 
+
+			//检查是否是回看页面
+			if(getType() === 'back') {
+				// $('.custom').hide()
+				$.ajaxSettings.crossDomain = true
+				//自动播放视频
+				$.get('http://192.168.1.104:8080/weixingroup/client/getvideo',function(data){
+					console.log(data);
+					arr = data.slice(0);
+					var str = '';
+					for(var i = 0,len = arr.length; i < len; i++){
+						str += '<li data-index="'+i+'">视频'+(i+1)+'</li>'
+					}
+					console.log(str)
+					$('.playlist ul').html(str)
+					$('.playlist li:eq(0)').addClass('active')
+					$('.playlist').show()
+					console.log(arr)
+					getVideoPalyAuto(arr,myplayer,0);
+
+					//点击的方法播放视频
+					
+					$('.playlist').on('click', function(ev){
+						if(ev.target.tagName.toLowerCase() === 'li') {
+							var index = $(ev.target).data('index')
+							arr = [];
+							var brr = data.slice(index);
+							$(ev.target).addClass('active')
+							.siblings()
+							.removeClass('active')
+							getVideoPalyAuto(brr,myplayer,index)
+						}
+					})
+				})
+				
+			} else if(getType() === 'preview'){
+				console.log('preview')
+				$('.custom').hide();
+				CUSTOMWIDTH = 0;
+				// $('#my-video').css('float','none')
+				myplayer.src('Honor.mp4')
+			}
+			else {
+				$('.custom').show();
+				myplayer.src('Honor.mp4')
+			}
+			
+			var comments = new mycommonEvent.Tab($('.custom-nav a:eq(0)'))
 			var notes = new mycommonEvent.Tab($('.custom-nav a:eq(0)'), renderNotes)
 			$('.custom-nav a:eq(0)').trigger('click');
 			var staticHeight = $('.custom-nav').height()+$('.custom-header').height()+$('.send-mes').height();
@@ -96,6 +157,9 @@
 				console.log(Math.round(myplayer.currentTime()))
 				addToDialog ($(this),data)
 			})
+			$('#videoTransfer').on('click',function(){
+				alert('对不起功能不可用，需要联网支持')
+			})
 
 			//视频准备好的事件
 			myplayer.ready(function(){
@@ -107,7 +171,6 @@
 					var h = $(window).height();
 					console.log('resize',w)
 					$('.scroll-message').height(h -  staticHeight)
-					var CUSTOMWIDTH = 228;
 					$('.videoBox').width(w - CUSTOMWIDTH)
 					if(w > 528) {
 						var videoW = Math.round(w - CUSTOMWIDTH)
@@ -174,25 +237,51 @@
 				// $parent.scrollTop($parent.scrollTop() + columnHeight + 20)
 			}
 
-			//自动添加评论到页面
-			// function sortByTimeAndSendToDialog(btn,data,currentTime) {
-			// 	console.log(btn,data,currentTime)
-			// 	for(var i = 0; i < data.length; i++){
-			// 		if(data[i].videotime === currentTime) {
-			// 			  data.splice(i,1)
-			// 			  console.log(data.length)
-			// 			  addToDialog($(btn),data[i])
-			// 		}
-			// 	}
-			// }
-			
 			function renderNotes(){
 				// console.log(dataNotes)
 				for(var i = 0; i < dataNotes.length; i++ ) {
 					addToDialog($('#send-mime-notes'), dataNotes[i])
 				}
 			}
+			//这个video必须是videojs(id)
+			function getVideoPalyAuto(arr, video, index) {
+				var len = arr.length;
+				video.src(arr.shift().videourl)
+				video.on('ended',function(){
+						console.log('end')
+						var src = arr.shift();
+						if(src) {
+							console.log(src)
+							index++;
+							$('.playlist li:eq('+index+')').addClass('active')
+							.siblings().removeClass('active')
+							console.log(index)
+							video.src(src.videourl)
+							video.load()
+							video.play()
+						}
+				})
+				video.ready(function(){
+					video.play();
 
+				})
+			}
+
+
+			function getType() {
+				var search = location.search.slice(1).split('=')
+				return search[0]
+			}
+
+			function reverse(arr) {
+				var brr = [];
+				for(var i = 0,len = arr.length; i < len; i++){
+					brr[i] = arr[len - 1 - i]
+
+				}
+				return brr;
+			}
+			
 		</script>
 	</body>
 	</html>

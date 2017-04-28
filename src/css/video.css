@@ -35,6 +35,35 @@ body {
 .fullscreen .videoBox #my-video {
   margin: auto;
 }
+.fullscreen .playlist {
+  position: absolute;
+  right: 0;
+  width: 228px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  top: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 0px 20px;
+  display: none;
+}
+.fullscreen .playlist h1 {
+  color: #fff;
+  font-size: 24px;
+  line-height: 30px;
+}
+.fullscreen .playlist ul li {
+  color: #fff;
+  font-size: 14px;
+  display: block;
+  line-height: 40px;
+  height: 40px;
+  font-weight: bold;
+}
+.fullscreen .playlist ul li:hover,
+.fullscreen .playlist ul li.active {
+  color: #2389cb;
+}
 .fullscreen .custom {
   position: absolute;
   right: 0;
@@ -44,6 +73,7 @@ body {
   top: 0;
   height: 100%;
   background-color: #ccc;
+  display: none;
 }
 .fullscreen .custom .custom-header {
   padding-left: 14px;
@@ -97,7 +127,8 @@ body {
   height: 72px;
 }
 .fullscreen .custom .custom-body #send-mime-comment,
-.fullscreen .custom .custom-body #send-mime-notes {
+.fullscreen .custom .custom-body #send-mime-notes,
+.fullscreen .custom .custom-body #videoTransfer {
   display: block;
   background-color: #2389cb;
   color: #fff;
@@ -105,6 +136,11 @@ body {
   padding: 6px 15px;
   float: right;
   margin-top: 3px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.fullscreen .custom .custom-body #videoTransfer {
+  float: left;
 }
 .fullscreen .custom .custom-body .scroll-message {
   overflow: scroll;

@@ -51,8 +51,8 @@ gulp.task('images', function(){
 
 gulp.task('js',function(){
 	gulp.src('./src/js/*.js')
-		.pipe(jshint())
-		.pipe(jshint.reporter('default'))
+		// .pipe(jshint())
+		// .pipe(jshint.reporter('default'))
 		.pipe(uglify())
 		.pipe(gulp.dest('./dist/js'))
 		.pipe(livereload())

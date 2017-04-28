@@ -25,11 +25,11 @@ header{
     .logo{
         float:left;
         display: block;
-        font-size : 30px;
+        font-size : 26px;
         color:#333;
-        background: url('../image/yunshi-logo.png') 0 0 no-repeat;
-        background-size:50px 30px;
-        padding-left:50px;
+        background: url('../image/yunshi-logo.png') 0 3px no-repeat;
+        background-size:135px 32px;
+        padding-left:152px;
         font-weight: bold;
     }
     .loginer{
@@ -109,13 +109,14 @@ header{
         ul.choose-list{
             position: absolute;
             left:-303px;
-            top: 43px;
+            top: 40px;
             background-color: #fff;
             width:224px;
             height:196px;
             box-sizing: border-box;
             padding:0 14px;
             background-color: rgba(0,0,0,.6);
+            z-index:1;
             li{
                 display: block;
                 padding:0;
@@ -150,7 +151,7 @@ header{
             line-height: 20px;
         }
     }
-    .btn{
+    .btn,.btn-search{
         float:right;
         padding:9px 0;
         height:20px;
@@ -159,6 +160,7 @@ header{
         width:68px;
         text-align: center;
         line-height: 20px;
+        box-sizing:content-box;
     }
 }
 

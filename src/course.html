@@ -12,7 +12,6 @@
     <style>
         .self-information{
             background: #dde7d0;
-
         }
     </style>
 </head>
@@ -29,7 +28,7 @@
                 <li><a href="myCourse.html">我的课堂</a><span class="babel">1</span></li>  
                 <li><a href="history.html">历史课堂</a><!-- <span class="babel">1</span> --></li>  
             </ul>
-            <div class="searchBar">
+            <!-- <div class="searchBar">
                 <div class="select">
                     <div class="choosed">学校<i class="icon iconfont icon-triangle-copy"></i></div>
                 </div>
@@ -37,7 +36,7 @@
                     <input type="text" placeholder="搜素学校">
                 </div>
                 <span class="btn icon iconfont icon-sousuo-sousuo"></span>
-            </div>
+            </div> -->
         </div>
     </header>
     <article>
@@ -87,10 +86,10 @@
                 </div> 
                 <ul id="members">
                     <li><img src="image/avatar1.png" alt=""><span>金鑫:讲师</span></li>
-                    <li><img src="image/user1.jpg" alt=""><span>金鑫</span></li>
-                    <li><img src="image/user2.jpg" alt=""><span>金鑫</span></li>
-                    <li><img src="image/user3.jpg" alt=""><span>金鑫</span></li>
-                    <li><img src="image/user4.jpg" alt=""><span>金鑫</span></li>
+                    <li><img src="image/user1.jpg" alt=""><span>吴老师</span></li>
+                    <li><img src="image/user2.jpg" alt=""><span>郭老师</span></li>
+                    <li><img src="image/user3.jpg" alt=""><span>张老师</span></li>
+                    <li><img src="image/user4.jpg" alt=""><span>王老师</span></li>
                 </ul>
                 <div id="notes">
                    <!--  <div class="comments-item">   
@@ -152,14 +151,18 @@
         </section>
     </article>
    
-    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/common.js"></script>
     <script>
         var users = JSON.parse(localStorage.getItem('USER'))
         var members = JSON.parse(localStorage.getItem('INVITED_PEOPLE'))
         //修改评论弹出框
         var modal 
-        
+        var school = ['苏州市实验小学','苏州市苏苑实验小学','苏州市平直实验小学','苏州虎丘小学','苏州市善耕小学','苏州园区星海小学']
+        var grade = ['一年级','二年级','三年级','四年级','五年级','六年级']
+        var teacher = ['张老师','王老师','吴老师','郭老师']
+        var img = ['image/poster-rec1.jpg','image/poster-rec3.jpg','image/poster-rec4.jpg','image/poster-rec5.jpg']
+        randomMessage(school, grade, teacher,img)
          //初始化会议人员
             var len = 0
                 for(var i in members) {
@@ -184,10 +187,8 @@
             if(isHistory) {
                 $('#beginclass')
                 .siblings('a')
-                .text('已结束')
-                .removeAttr('href')
-                .removeAttr('target')
-                .css('backgroundColor','#999')
+                .text('会议回放')
+                .attr('href','video.html?back=1')
                 .end()
                 .siblings('span').remove()
                 .end()
@@ -210,7 +211,7 @@
             $('#beginclass').on('click',function(){
                 console.log('调起客户端')
                 console.log(user.videouser,user.videopwd,user.roomid,user.realname)
-                mycommonEvent.openNet('58.211.191.42',user.videouser,user.videopwd,user.roomid,user.realname)
+                mycommonEvent.openNet('192.168.1.173',user.videouser,user.videopwd,user.roomid,user.realname)
             })
 
             //搜索进入search.html
@@ -225,15 +226,17 @@
                 }
             })
             
-            //上传的文件删除
+            //上传的会议总结事件委托
             $('#upload').on('click',function(ev){
+                //上传文件删除
                 if(/delete/.test(ev.target.className)){
                     var result = confirm('确定删除文件')
                     if(result) return $(ev.target).parents('.file-mes').remove();
                 }
+                //上传文件下载
                 if(/download/.test(ev.target.className)) {
                     var a = $(ev.target).addClass('active').parents('.file-mes').find('span:eq(0)').text()
-                    console.log(a)
+                    window.location.href="upload/test.doc"
                 }
             })
         
@@ -418,6 +421,18 @@
         },500)
      }
 
+     function randomMessage(school, grade, teachers,img) {
+        var schoolName = school[Math.round(Math.random()*5)]
+        var gradeLevel = grade[Math.round(Math.random()*5)]
+        var teacher = teachers[Math.round(Math.random()*3)]
+        var image = img[Math.round(Math.random()*3)]
+        console.log(image)
+        $('.course-detail .image').css('backgroundImage','url('+image+')')
+        $('.course-introdution').find('.teacher').text(teacher)
+                                .end()
+                                .find('h1')
+                                .html(schoolName+gradeLevel)
+     }
 
     </script>
 </body>
