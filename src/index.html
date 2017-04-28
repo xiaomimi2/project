@@ -31,9 +31,71 @@
             <div class="select">
                 <div class="choosed">学校<i class="icon iconfont icon-triangle-copy"></i></div>
                 <ul class="choose-list">
-                    <li>小学</li>
-                    <li>初中</li>
-                    <li>高中</li>
+                    <li><span>小学</span><div class="primary">
+                        <ul>
+                            <li class="typeitem">年级</li>
+                            <li class="typeitem-child">一年级</li>
+                            <li class="typeitem-child">二年级</li>
+                            <li class="typeitem-child">三年级</li>
+                            <li class="typeitem-child">四年级</li>
+                            <li class="typeitem-child">五年级</li>
+                            <li class="typeitem-child">六年级</li>
+                        </ul>
+                        <ul>
+                            <li class="typeitem">科目</li>
+                            <li class="typeitem-child">语文</li>
+                            <li class="typeitem-child">数学</li>
+                            <li class="typeitem-child">英语</li>
+                            <li class="typeitem-child">音乐</li>
+                            <li class="typeitem-child">美术</li>
+                            <li class="typeitem-child">体育</li>
+                            <li class="typeitem-child">思想</li>
+                        </ul>
+                        <span class="changetobyfilter">确定</span>
+                    </div></li>
+                    <li><span>初中</span><div class="primary">
+                        <ul>
+                            <li class="typeitem">年级</li>
+                            <li class="typeitem-child">一年级</li>
+                            <li class="typeitem-child">二年级</li>
+                            <li class="typeitem-child">三年级</li>
+                        </ul>
+                        <ul>
+                            <li class="typeitem">科目</li>
+                            <li class="typeitem-child">语文</li>
+                            <li class="typeitem-child">数学</li>
+                            <li class="typeitem-child">英语</li>
+                            <li class="typeitem-child">美术</li>
+                            <li class="typeitem-child">生物</li>
+                            <li class="typeitem-child">化学</li>
+                            <li class="typeitem-child">物理</li>
+                            <li class="typeitem-child">历史</li>
+                            <li class="typeitem-child">地理</li>
+                        </ul>
+                        <span class="changetobyfilter">确定</span>
+                    </div></li>
+                    <li><span>高中</span><div class="primary">
+                        <ul>
+                            <li class="typeitem">年级</li>
+                            <li class="typeitem-child">一年级</li>
+                            <li class="typeitem-child">二年级</li>
+                            <li class="typeitem-child">三年级</li>
+                        </ul>
+                        <ul>
+                            <li class="typeitem">科目</li>
+                            <li class="typeitem-child">语文</li>
+                            <li class="typeitem-child">数学</li>
+                            <li class="typeitem-child">英语</li>
+                            <li class="typeitem-child">美术</li>
+                            <li class="typeitem-child">生物</li>
+                            <li class="typeitem-child">化学</li>
+                            <li class="typeitem-child">物理</li>
+                            <li class="typeitem-child">历史</li>
+                            <li class="typeitem-child">地理</li>
+                            <li class="typeitem-child">体育</li>
+                        </ul>
+                        <span class="changetobyfilter">确定</span>
+                    </div></li>
                 </ul>
             </div>
             <div class="control">
@@ -465,11 +527,36 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/common.js"></script>
     <script>
-       $(function(){
+      $(function(){
           $('.searchBar .icon-sousuo-sousuo').on('click', function(){
-            window.location.href="search.html";
+              window.location.href="search.html";
           })
-       })
+          //小学，初中，高中删选年级，课程进行跳转。
+          $('.choose-list').on('click',function(ev){
+              if(ev.target.className === 'typeitem-child') {
+                  $(ev.target).addClass('active')
+                              .siblings()
+                              .removeClass('active') 
+                              .parent('li')
+                              .parents('li')
+                              .siblings()
+                              .find('li')
+                              .removeClass('active')
+              }
+              if(ev.target.className == 'changetobyfilter') {
+                var data = {}
+                var $parent = $(ev.target).parents('.primary')
+                var $active = $parent.find('.active')
+                $active.removeClass('active')
+                data.grade = $active.eq(0).text()
+                data.subject = $active.eq(1).text()
+                data.school = $parent.siblings('span').text()
+                localStorage.setItem('filtersubject',JSON.stringify(data))
+                window.open('filter.html');
+              }
+          })
+          //
+    })
     </script>
 </body>
 </html>

@@ -104,22 +104,90 @@ header .items li .babel {
   height: 196px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding: 0 14px;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1;
 }
-.searchBar .select ul.choose-list li {
+.searchBar .select ul.choose-list > li {
   display: block;
   padding: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 4px 0px;
+  padding: 4px 14px;
   line-height: 58px;
   color: #fff;
   font-weight: bold;
   letter-spacing: 3px;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
 }
-.searchBar .select ul.choose-list li:last-child {
+.searchBar .select ul.choose-list > li:last-child {
   border: none;
+}
+.searchBar .select ul.choose-list > li:hover {
+  background-color: #fff;
+  color: #188eee;
+}
+.searchBar .select ul.choose-list > li:hover div {
+  display: block;
+}
+.searchBar .select ul.choose-list > li div {
+  display: none;
+  border: 1px solid #e0e0e0;
+  padding-left: 46px;
+  position: absolute;
+  left: 220px;
+  top: 0px;
+  background-color: #fff;
+  width: 980px;
+  height: 300px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 0px;
+  color: #666;
+  padding-top: 40px;
+}
+.searchBar .select ul.choose-list > li div li.typeitem {
+  color: #333;
+  width: auto;
+  padding-right: 22px;
+}
+.searchBar .select ul.choose-list > li div li {
+  padding: 0;
+  font-weight: normal;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  border-right: 1px solid #999;
+  width: 76px;
+  text-align: center;
+  line-height: 1;
+  vertical-align: top;
+  color: #999;
+}
+.searchBar .select ul.choose-list > li div li a {
+  text-decoration: none;
+  color: #333;
+}
+.searchBar .select ul.choose-list > li div li.typeitem-child:hover,
+.searchBar .select ul.choose-list > li div li.typeitem-child.active {
+  color: #188eee;
+}
+.searchBar .select ul.choose-list > li div li.typeitem-child:hover a,
+.searchBar .select ul.choose-list > li div li.typeitem-child.active a {
+  color: #333;
+}
+.searchBar .select ul.choose-list > li div .changetobyfilter {
+  display: inline-block;
+  position: absolute;
+  right: 470px;
+  bottom: 40px;
+  width: 80px;
+  line-height: 30px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #188eee;
+  color: #fff;
+  font-weight: normal;
+  cursor: pointer;
 }
 .searchBar .control {
   float: left;

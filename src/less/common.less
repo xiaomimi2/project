@@ -114,20 +114,89 @@ header{
             width:224px;
             height:196px;
             box-sizing: border-box;
-            padding:0 14px;
             background-color: rgba(0,0,0,.6);
             z-index:1;
-            li{
+            &>li{
                 display: block;
                 padding:0;
                 border-bottom:1px solid rgba(255,255,255,.3);
-                padding:4px 0px;
+                padding:4px 14px;
                 line-height: 58px;
                 color:#fff;
                 font-weight: bold;
                 letter-spacing: 3px;
+                transition:all .3s ease-in;
                 &:last-child{
                     border:none;
+                }
+                &:hover{
+                    background-color: #fff;
+                    color:#188eee;
+                    div{
+                        display: block;
+                        
+                    }
+                }
+                div{
+                    display: none;
+                    box-sizing: border-box;
+                    border:1px solid #e0e0e0;
+                    padding-left:46px;
+                    position: absolute;
+                    left:220px;
+                    top:0px;
+                    background-color: #fff;
+                    width:980px;
+                    height:300px;
+                    box-sizing: border-box;
+                    font-size: 0px;
+                    color:#666;
+                    // padding-left:46px;
+                    padding-top:40px;
+                    
+                    li.typeitem{
+                        color:#333;
+                        width:auto;
+                        padding-right:22px; 
+                    }
+                    li{
+                        padding:0;
+                        font-weight: normal;
+                        cursor:pointer;
+                        display: inline-block;
+                        font-size:12px;
+                        border-right:1px solid #999;
+                        width:76px;
+                        text-align: center;
+                        line-height: 1;
+                        vertical-align: top;
+                        color:#999;
+                        a{
+                            text-decoration: none;
+                             color:#333;
+                        }
+                        &.typeitem-child:hover, &.typeitem-child.active{
+                            color:#188eee;
+                            a{
+                                 color:#333;
+                            }
+                        }
+                    }
+                    .changetobyfilter{
+                        display: inline-block;
+                        position: absolute;
+                        right:470px;
+                        bottom:40px;
+                        width:80px;
+                        line-height: 30px;
+                        font-size:14px;
+                        text-align: center;
+                        background-color: #188eee;
+                        color:#fff;
+                        font-weight: normal;
+                        cursor:pointer;
+                    }
+
                 }
             }
         }

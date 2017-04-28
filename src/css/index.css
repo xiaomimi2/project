@@ -1,5 +1,11 @@
+nav {
+  min-width: 1200px;
+}
 nav .banner {
+  position: relative;
+  z-index: 0;
   width: 100%;
+  min-width: 1200px;
   margin-bottom: 24px;
   background-color: #00a2e6;
 }
